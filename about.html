@@ -3,19 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About | Digital Nexus</title>
-  <meta name="description" content="Digital Nexus about page placeholder for the freelance service website." />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>About Digital Nexus | Freelance Web, SEO, and Automation Consultant</title>
+  <meta name="description" content="Learn how Digital Nexus helps service businesses turn websites, SEO, automation, AI chatbots, and analytics into practical growth systems." />
+  <link rel="canonical" href="https://example.com/about.html" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Digital Nexus | Freelance Web, SEO, and Automation Consultant" />
+  <meta property="og:description" content="Learn how Digital Nexus helps service businesses turn websites, SEO, automation, AI chatbots, and analytics into practical growth systems." />
+  <meta property="og:url" content="https://example.com/about.html" />
+  <meta property="og:image" content="https://example.com/assets/og-preview.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'] }, colors: { ink: '#08111f', night: '#0d1324', pearl: '#f6f8fb', aurora: '#7c3aed', cyan: '#06b6d4', mint: '#34d399' }, boxShadow: { glow: '0 0 38px rgba(124, 58, 237, 0.28)', soft: '0 24px 70px rgba(8, 17, 31, 0.14)' } } } };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  
 </head>
 <body class="bg-pearl text-ink antialiased">
-  <main class="grid min-h-screen place-items-center px-5 text-center">
-    <section class="max-w-2xl">
-      <a href="index.html" class="brand-mark !text-ink justify-center"><span class="brand-orb">✦</span><span>Digital Nexus</span></a>
-      <h1 class="mt-8 text-5xl font-black tracking-tight">About</h1>
-      <p class="mt-4 text-slate-600">This page is reserved for the next phase. Return to the premium homepage experience.</p>
-      <a class="btn btn-dark mt-8" href="index.html">Back Home</a>
-    </section>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="siteHeader" class="site-header fixed inset-x-0 top-0 z-50">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Primary navigation">
+      <a href="index.html" class="brand-mark" aria-label="Digital Nexus home"><span class="brand-orb" aria-hidden="true">✦</span><span>Digital Nexus</span></a>
+      <div class="hidden items-center gap-1 lg:flex">
+        <a class="nav-link" href="about.html">About</a>
+        <div class="dropdown group relative"><button class="nav-link inline-flex items-center gap-2" type="button" aria-haspopup="true" aria-expanded="false">Services <svg class="h-4 w-4 transition group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg></button>
+          <div class="dropdown-panel">
+            <a href="services/web-development.html">Web Development<span>Fast, scalable sites</span></a>
+            <a href="services/seo-services.html">SEO & Traffic<span>Search-ready growth</span></a>
+            <a href="services/ai-chatbots.html">AI Chatbots<span>Smart client support</span></a>
+            <a href="services/automation.html">Automation<span>Less manual work</span></a>
+          </div></div>
+        <a class="nav-link" href="portfolio.html">Portfolio</a><a class="nav-link" href="pricing.html">Pricing</a><a class="nav-link" href="blog.html">Blog</a><a class="nav-link" href="contact.html">Contact</a>
+      </div>
+      <a class="btn btn-small hidden lg:inline-flex" href="contact.html">Start a Project</a>
+      <button id="menuToggle" class="hamburger lg:hidden" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div id="mobileMenu" class="mobile-menu lg:hidden" aria-hidden="true"><div class="mobile-menu-inner">
+      <a href="about.html">About</a><details><summary>Services</summary><a href="services/web-development.html">Web Development</a><a href="services/web-design.html">Web Design</a><a href="services/seo-services.html">SEO Services</a><a href="services/ai-chatbots.html">AI Chatbots</a><a href="services/automation.html">Automation</a><a href="services.html">All Services</a></details>
+      <a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a class="btn w-full justify-center" href="contact.html">Start a Project</a>
+    </div></div>
+  </header>
+  <main id="main">
+    <section class="inner-hero hero-section text-white"><span class="hero-glow"></span><div class="blob blob-one"></div><div class="blob blob-two"></div>
+      <div class="mx-auto max-w-7xl px-5 lg:px-8"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></nav>
+        <span class="eyebrow">About</span><h1 class="mt-5 max-w-4xl text-5xl font-black tracking-tight md:text-7xl">Freelance digital strategy with premium execution.</h1><p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200">Digital Nexus is a consultant-led digital service studio for businesses that need more than a pretty website: they need clarity, speed, visibility, and measurable next steps.</p>
+        <div class="hero-badges"><span>Conversion-focused</span><span>SEO-ready</span><span>Built for speed</span></div></div></section><section class="section bg-white"><div class="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8"><div class="reveal"><span class="section-kicker">Approach</span><h2 class="mt-4 text-4xl font-black tracking-tight">Lean strategy, polished execution, and business-first decisions.</h2><p class="mt-5 text-lg leading-8 text-slate-600">The work is intentionally focused: understand the offer, identify conversion barriers, build the digital assets that matter, and avoid unnecessary complexity. Projects can include websites, SEO foundations, content, analytics, chatbots, automation, and integrations.</p></div><div class="grid gap-4"><div class="info-card reveal"><h3>Who I help</h3><p>Small businesses, attorneys, consultants, creators, local teams, and startups that want a more professional and useful digital presence.</p></div><div class="info-card reveal"><h3>How projects feel</h3><p>Clear scope, direct communication, thoughtful recommendations, and practical deliverables that open directly in a browser.</p></div></div></div></section><section class="section cta-section text-center text-white"><h2 class="mx-auto max-w-4xl px-5 text-4xl font-black tracking-tight md:text-6xl">Need a partner who can connect design, SEO, and automation?</h2><a class="btn btn-primary mt-8" href="contact.html">Start a Conversation</a></section>
   </main>
+  <footer class="footer">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4 lg:px-8">
+      <div><a href="index.html" class="brand-mark text-white"><span class="brand-orb">✦</span><span>Digital Nexus</span></a><p class="mt-5 text-sm leading-7 text-slate-400">Premium freelance digital services for service businesses, startups, consultants, attorneys, and local teams that need measurable online momentum.</p></div>
+      <div><h3>Services</h3><a href="services/web-development.html">Web Development</a><a href="services/seo-services.html">SEO Services</a><a href="services/ai-chatbots.html">AI Chatbots</a><a href="services/automation.html">Automation</a><a href="services/data-analytics.html">Data Analytics</a></div>
+      <div><h3>Industries</h3><a href="industries/small-business-websites.html">Small Business Websites</a><a href="industries/websites-for-attorneys.html">Websites for Attorneys</a><a href="industries/websites-for-consultants.html">Consultants</a><a href="industries/startup-digital-services.html">Startups</a><a href="industries/local-business-marketing.html">Local Marketing</a></div>
+      <div><h3>Company</h3><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a class="btn btn-small mt-5" href="contact.html">Contact Now</a></div>
+    </div><div class="border-t border-white/10 py-5 text-center text-sm text-slate-500">© <span id="year"></span> Digital Nexus Freelance Services. All rights reserved.</div>
+  </footer>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
