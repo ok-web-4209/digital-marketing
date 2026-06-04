@@ -35,6 +35,33 @@ if (menuToggle && mobileMenu) {
   });
 }
 
+
+const serviceDropdowns = document.querySelectorAll('.dropdown');
+
+serviceDropdowns.forEach((dropdown) => {
+  const trigger = dropdown.querySelector('[aria-haspopup="true"]');
+  let closeTimer;
+
+  const openDropdown = () => {
+    window.clearTimeout(closeTimer);
+    dropdown.classList.add('is-open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  };
+
+  const scheduleClose = () => {
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => {
+      dropdown.classList.remove('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }, 450);
+  };
+
+  dropdown.addEventListener('mouseenter', openDropdown);
+  dropdown.addEventListener('mouseleave', scheduleClose);
+  dropdown.addEventListener('focusin', openDropdown);
+  dropdown.addEventListener('focusout', scheduleClose);
+});
+
 const revealElements = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window) {
