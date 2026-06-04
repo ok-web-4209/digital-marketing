@@ -78,3 +78,53 @@ if ('IntersectionObserver' in window) {
 } else {
   revealElements.forEach((element) => element.classList.add('visible'));
 }
+
+const formspreeForms = document.querySelectorAll('.js-formspree-form');
+
+formspreeForms.forEach((form) => {
+  const status = form.querySelector('.form-status');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const initialButtonText = submitButton ? submitButton.textContent : '';
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (status) {
+      status.textContent = 'Sending your request...';
+      status.classList.remove('form-status-success', 'form-status-error');
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      form.reset();
+      if (status) {
+        status.textContent = 'Thank you. We will get back shortly.';
+        status.classList.add('form-status-success');
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
+        status.classList.add('form-status-error');
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = initialButtonText;
+      }
+    }
+  });
+});
