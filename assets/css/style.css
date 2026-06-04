@@ -257,3 +257,86 @@ a { transition: color 180ms ease, background 180ms ease, transform 180ms ease, b
 .article-content p, .article-content ul { margin-top: 1rem; }
 .article-content li { margin-left: 1.3rem; margin-top: 0.55rem; }
 @media (min-width: 768px) { .related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Phase 3 polish: Design Rank Studio conversion CTAs and expanded navigation */
+.service-dropdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(42rem, calc(100vw - 2rem));
+  gap: 0.15rem;
+}
+.service-dropdown a { min-width: 0; }
+.header-consultation {
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+  color: #04111f;
+  box-shadow: 0 16px 40px rgba(6, 182, 212, 0.26);
+}
+.btn-live,
+.live-menu-link,
+.live-whatsapp {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.98), rgba(6, 182, 212, 0.98));
+  color: #04111f;
+  font-weight: 950;
+}
+.live-whatsapp {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  bottom: 1.25rem;
+  box-shadow: 0 22px 55px rgba(6, 182, 212, 0.26), 0 12px 30px rgba(8, 17, 31, 0.22);
+  display: inline-flex;
+  gap: 0.55rem;
+  padding: 0.9rem 1.1rem;
+  position: fixed;
+  right: 1.25rem;
+  z-index: 60;
+}
+.live-whatsapp:hover,
+.btn-live:hover,
+.live-menu-link:hover { transform: translateY(-2px); box-shadow: 0 24px 60px rgba(52, 211, 153, 0.28); }
+.live-dot {
+  background: #16a34a;
+  border-radius: 999px;
+  box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.18);
+  height: 0.65rem;
+  width: 0.65rem;
+}
+.live-menu-link {
+  align-items: center;
+  border-radius: 1rem;
+  display: flex !important;
+  justify-content: center;
+  padding: 0.95rem 1rem !important;
+}
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.footer .social-links a {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  color: #e2e8f0;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 850;
+  padding: 0.42rem 0.62rem;
+}
+.footer .social-links a:hover { background: rgba(255,255,255,0.08); color: white; }
+.portfolio-card .feature-list { margin-top: 1rem; }
+.portfolio-card .feature-list li { font-size: 0.95rem; }
+.pricing-card .feature-list { margin-top: 1.25rem; }
+@media (max-width: 767px) {
+  .live-whatsapp {
+    bottom: 0.85rem;
+    left: 0.85rem;
+    right: 0.85rem;
+    justify-content: center;
+    padding: 0.85rem 1rem;
+  }
+}
+@media (max-width: 420px) {
+  .brand-mark { font-size: 0.95rem; gap: 0.5rem; }
+  .brand-orb { width: 2.15rem; height: 2.15rem; border-radius: 0.82rem; }
+}
