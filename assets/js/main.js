@@ -128,3 +128,151 @@ formspreeForms.forEach((form) => {
     }
   });
 });
+
+const initializeGa4Tracking = () => {
+  if (window.__designRankGa4TrackingInitialized) return;
+  window.__designRankGa4TrackingInitialized = true;
+
+  const hasGtag = () => typeof window.gtag === 'function';
+  const cleanText = (value) => (value || '').replace(/\s+/g, ' ').trim();
+  const pagePath = () => window.location.pathname || '/';
+  const elementText = (element) => cleanText(
+    element?.innerText
+    || element?.textContent
+    || element?.getAttribute?.('aria-label')
+    || element?.getAttribute?.('title')
+    || element?.getAttribute?.('value')
+    || element?.name
+  );
+  const targetUrl = (element) => element?.href || element?.formAction || element?.getAttribute?.('action') || '';
+  const sendEvent = (eventName, parameters) => {
+    if (!hasGtag()) return;
+    window.gtag(eventName, parameters);
+  };
+
+  const keywords = {
+    contact: [
+      'contact', 'consult', 'consultation', 'call', 'phone', 'email', 'mail', 'whatsapp', 'wa.me',
+      'available', 'availability', 'live now', '24/7', 'urgent', 'help', 'inquiry', 'inquiries',
+      'request', 'quote', 'proposal', 'project', 'business', 'start', 'plan', 'scope', 'message', 'submit', 'send'
+    ],
+    primary: [
+      'free consultation', 'start', 'get started', 'request', 'contact', 'quote', 'proposal', 'view services',
+      'learn more', 'book', 'schedule', 'live now', 'available', 'urgent', 'help', 'business inquiry', 'send', 'submit'
+    ]
+  };
+
+  const textContext = (element) => {
+    const pieces = [];
+    if (element) {
+      pieces.push(elementText(element));
+      pieces.push(element.getAttribute?.('href'));
+      pieces.push(element.getAttribute?.('class'));
+      pieces.push(element.getAttribute?.('id'));
+      pieces.push(element.getAttribute?.('name'));
+    }
+
+    const contactArea = element?.closest?.('form, .contact, .consultation-section, .cta-section, header, .pricing-card');
+    if (contactArea) {
+      pieces.push(elementText(contactArea));
+      pieces.push(contactArea.getAttribute?.('class'));
+      pieces.push(contactArea.getAttribute?.('id'));
+    }
+
+    return cleanText(pieces.filter(Boolean).join(' ')).toLowerCase();
+  };
+
+  const matchesAny = (value, terms) => terms.some((term) => value.includes(term));
+  const ctaType = (element, context) => {
+    const href = (element?.getAttribute?.('href') || '').toLowerCase();
+    if (href.startsWith('tel:')) return 'phone';
+    if (href.startsWith('mailto:')) return 'email';
+    if (href.includes('wa.me') || href.includes('whatsapp')) return 'whatsapp';
+    if (context.includes('urgent')) return 'urgent_help';
+    if (context.includes('available') || context.includes('live now') || context.includes('24/7')) return 'live_availability';
+    if (context.includes('consult')) return 'consultation';
+    if (context.includes('business') || context.includes('inquir')) return 'business_inquiry';
+    if (context.includes('contact') || context.includes('message')) return 'contact';
+    return 'primary_cta';
+  };
+
+  const serviceName = (element) => {
+    const card = element.closest?.('.service-card, .pricing-card, article, .dropdown-panel');
+    return cleanText(card?.querySelector?.('h2, h3, .section-kicker')?.textContent) || elementText(element);
+  };
+
+  const portfolioName = (element) => {
+    const card = element.closest?.('.portfolio-card, article');
+    return cleanText(card?.querySelector?.('h2, h3, .section-kicker')?.textContent) || elementText(element);
+  };
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : event.target?.parentElement;
+    const clickable = target?.closest?.('a, button, input[type="button"], input[type="submit"]');
+    if (!clickable) return;
+
+    const context = textContext(clickable);
+    const text = elementText(clickable);
+    const url = targetUrl(clickable);
+    const isContact = matchesAny(context, keywords.contact) || clickable.closest?.('form, .consultation-section, .cta-section');
+    const isPrimary = clickable.matches?.('.btn, .text-link, button, input[type="submit"]') || matchesAny(context, keywords.primary);
+
+    if (isPrimary && (isContact || matchesAny(context, keywords.primary))) {
+      sendEvent('cta_click', {
+        button_text: text,
+        page_path: pagePath(),
+        target_url: url,
+        cta_type: ctaType(clickable, context),
+      });
+    }
+
+    if (isContact) {
+      sendEvent('contact_interaction', {
+        interaction_type: ctaType(clickable, context),
+        button_text: text,
+        page_path: pagePath(),
+        target_url: url,
+      });
+    }
+
+    const href = (clickable.getAttribute?.('href') || '').toLowerCase();
+    if (clickable.closest?.('.service-card, .service-dropdown, .mini-link-list') || href.includes('/services/') || href.includes('services.html')) {
+      sendEvent('service_click', {
+        service_name: serviceName(clickable),
+        page_path: pagePath(),
+        target_url: url,
+      });
+    }
+
+    if (clickable.closest?.('.portfolio-card') || href.includes('portfolio') || context.includes('portfolio') || context.includes('visit website')) {
+      sendEvent('portfolio_click', {
+        portfolio_name: portfolioName(clickable),
+        portfolio_url: url,
+        page_path: pagePath(),
+      });
+    }
+  });
+
+  document.addEventListener('submit', (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const submitter = event.submitter || form.querySelector('button[type="submit"], input[type="submit"]');
+    const formName = cleanText(form.getAttribute('aria-label') || form.getAttribute('id') || form.getAttribute('name') || form.querySelector('h2, h3, legend')?.textContent || 'Contact form');
+
+    sendEvent('form_submit', {
+      form_name: formName,
+      page_path: pagePath(),
+      form_action: form.getAttribute('action') || '',
+    });
+
+    sendEvent('contact_interaction', {
+      interaction_type: 'form_submit',
+      button_text: elementText(submitter) || 'Submit',
+      page_path: pagePath(),
+      target_url: form.getAttribute('action') || '',
+    });
+  });
+};
+
+initializeGa4Tracking();
