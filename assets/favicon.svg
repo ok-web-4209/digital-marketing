@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">Design Rank Studio favicon</title>
-  <desc id="desc">Gradient rounded-square mark with a white four-point sparkle.</desc>
+  <title id="title">Design Rank Studio</title>
+  <desc id="desc">Gradient rounded-square mark with an upward rank/growth arrow.</desc>
   <defs>
-    <linearGradient id="drsGradient" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+    <linearGradient id="drsGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
       <stop stop-color="#7c3aed"/>
       <stop offset="1" stop-color="#06b6d4"/>
     </linearGradient>
@@ -10,7 +10,7 @@
       <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#08111f" flood-opacity="0.25"/>
     </filter>
   </defs>
-  <rect width="64" height="64" rx="20" fill="url(#drsGradient)" filter="url(#shadow)"/>
-  <path fill="#fff" d="M32 14.5 36.2 27.8 49.5 32 36.2 36.2 32 49.5 27.8 36.2 14.5 32 27.8 27.8 32 14.5Z"/>
-  <circle cx="32" cy="32" r="3.2" fill="#e0f2fe"/>
+  <rect width="64" height="64" rx="18" fill="url(#drsGradient)" filter="url(#shadow)"/>
+  <path d="M14 41 L27 28 L36 35 L50 21" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 21 H50 V32" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
