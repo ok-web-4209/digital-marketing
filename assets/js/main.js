@@ -36,6 +36,25 @@ if (menuToggle && mobileMenu) {
 }
 
 
+// Compact "Available now" contact button in the header on mobile
+const desktopCta = document.querySelector('.header-consultation');
+const headerToggle = document.querySelector('#menuToggle');
+if (desktopCta && headerToggle && !document.querySelector('.header-cta-mobile')) {
+  const mobileCta = document.createElement('a');
+  mobileCta.className = 'btn header-cta-mobile lg:hidden';
+  mobileCta.href = desktopCta.getAttribute('href') || '#';
+  const ctaTarget = desktopCta.getAttribute('target');
+  const ctaRel = desktopCta.getAttribute('rel');
+  if (ctaTarget) mobileCta.setAttribute('target', ctaTarget);
+  if (ctaRel) mobileCta.setAttribute('rel', ctaRel);
+  mobileCta.setAttribute('aria-label', 'Contact us — available now');
+  mobileCta.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span class="header-cta-mobile-label">Available now</span>';
+  headerToggle.parentNode.insertBefore(mobileCta, headerToggle);
+}
+
+// Pulse all live indicators
+document.querySelectorAll('.live-dot').forEach((dot) => dot.classList.add('blinking'));
+
 const serviceDropdowns = document.querySelectorAll('.dropdown');
 
 serviceDropdowns.forEach((dropdown) => {
@@ -147,7 +166,8 @@ const initializeGa4Tracking = () => {
   const targetUrl = (element) => element?.href || element?.formAction || element?.getAttribute?.('action') || '';
   const sendEvent = (eventName, parameters) => {
     if (!hasGtag()) return;
-    window.gtag(eventName, parameters);
+    // GA4 custom events must be sent with the 'event' command.
+    window.gtag('event', eventName, parameters);
   };
 
   const keywords = {
