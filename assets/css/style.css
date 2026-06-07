@@ -1009,3 +1009,32 @@ a { transition: color 180ms ease, background 180ms ease, transform 180ms ease, b
   .header-cta-mobile { padding: 0.5rem 0.62rem; }
   .header-cta-mobile-label { display: none; }
 }
+
+/* Mobile menu: make the Live Now CTA a real button */
+.mobile-menu .btn {
+  align-items: center;
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.25);
+  color: #04111f;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  min-height: 3rem;
+}
+.mobile-menu .btn:hover {
+  background: linear-gradient(135deg, #6ee7b7, #22d3ee);
+  color: #04111f;
+}
+.mobile-menu .btn .live-dot { height: 0.55rem; width: 0.55rem; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18); }
+
+/* Pricing preview tiles (homepage) — heading style + aligned layout */
+.pricing-card h3 {
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+@media (min-width: 1024px) {
+  .pricing-preview-grid .pricing-card h3 { min-height: 1.7rem; }
+  .pricing-preview-grid .pricing-card > p { min-height: 3.6rem; }
+}
