@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Website health checklist</title><desc id="d">A website maintenance panel showing uptime, backup, update, form and speed checks all passing.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="750" rx="20" fill="#f7f5f1"/>
+<circle cx="840" cy="620" r="130" fill="#e2f0e9" opacity="0.7"/>
+<g filter="url(#soft)" transform="translate(150 110)">
+  <rect width="580" height="420" rx="20" fill="#ffffff" stroke="#dde3ec"/>
+  <rect width="580" height="72" rx="20" fill="#0b1f3a"/>
+  <rect y="52" width="580" height="20" fill="#0b1f3a"/>
+  <text x="32" y="45" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#ffffff">Site health</text>
+  <rect x="440" y="24" width="108" height="26" rx="13" fill="rgba(255,255,255,0.16)"/>
+  <text x="494" y="42" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#9ce0bd">All passing</text>
+  <g transform="translate(0 104)">
+    <rect x="24" y="0" width="532" height="48" rx="12" fill="#f7f5f1"/>
+    <circle cx="52" cy="24" r="14" fill="#e2f0e9"/>
+    <path d="M45 24 l5 5 9 -10" stroke="#1f7a52" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="29" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#16345c">Uptime monitoring</text>
+    <text x="534" y="29" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1f7a52">All clear</text>
+  </g><g transform="translate(0 166)">
+    <rect x="24" y="0" width="532" height="48" rx="12" fill="#f7f5f1"/>
+    <circle cx="52" cy="24" r="14" fill="#e2f0e9"/>
+    <path d="M45 24 l5 5 9 -10" stroke="#1f7a52" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="29" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#16345c">Daily backups</text>
+    <text x="534" y="29" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1f7a52">Complete</text>
+  </g><g transform="translate(0 228)">
+    <rect x="24" y="0" width="532" height="48" rx="12" fill="#f7f5f1"/>
+    <circle cx="52" cy="24" r="14" fill="#e2f0e9"/>
+    <path d="M45 24 l5 5 9 -10" stroke="#1f7a52" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="29" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#16345c">Security updates</text>
+    <text x="534" y="29" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1f7a52">Applied</text>
+  </g><g transform="translate(0 290)">
+    <rect x="24" y="0" width="532" height="48" rx="12" fill="#f7f5f1"/>
+    <circle cx="52" cy="24" r="14" fill="#e2f0e9"/>
+    <path d="M45 24 l5 5 9 -10" stroke="#1f7a52" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="29" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#16345c">Quote form delivery</text>
+    <text x="534" y="29" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1f7a52">Verified</text>
+  </g><g transform="translate(0 352)">
+    <rect x="24" y="0" width="532" height="48" rx="12" fill="#f7f5f1"/>
+    <circle cx="52" cy="24" r="14" fill="#e2f0e9"/>
+    <path d="M45 24 l5 5 9 -10" stroke="#1f7a52" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="29" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#16345c">Page speed</text>
+    <text x="534" y="29" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1f7a52">Good</text>
+  </g>
+</g>
+<g filter="url(#soft)" transform="translate(600 560)">
+  <rect width="300" height="96" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="44" cy="48" r="20" fill="#f3e8d3"/>
+  <path d="M44 36 l10 4.4 v8 c0 7 -4.4 13 -10 15.6 -5.6 -2.6 -10 -8.6 -10 -15.6 v-8 Z" fill="#b08948"/>
+  <text x="78" y="42" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0b1f3a">Checked every month</text>
+  <text x="78" y="64" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#5b6b80">Optional, cancel any time</text>
+</g>
+</svg>

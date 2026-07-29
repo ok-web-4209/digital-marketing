@@ -1,298 +1,358 @@
-const header = document.querySelector('#siteHeader');
-const menuToggle = document.querySelector('#menuToggle');
-const mobileMenu = document.querySelector('#mobileMenu');
-const year = document.querySelector('#year');
+/**
+ * Design Rank Studio — site behaviour.
+ *
+ * Deliberately small and dependency-free: header state, an accessible mobile
+ * menu and dropdowns, scroll reveals, the sticky mobile CTA, form validation
+ * and submission, and GA4 event tracking.
+ */
+(function () {
+  'use strict';
 
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const setHeaderState = () => {
-  if (!header) return;
-  header.classList.toggle('scrolled', window.scrollY > 12);
-};
+  /* --------------------------------------------------------------- footer */
 
-setHeaderState();
-window.addEventListener('scroll', setHeaderState, { passive: true });
+  var yearEl = document.querySelector('[data-year]');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    menuToggle.classList.toggle('active', isOpen);
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
-  });
+  /* ------------------------------------------------- header scrolled state */
 
-  mobileMenu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      menuToggle.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open navigation menu');
-      mobileMenu.setAttribute('aria-hidden', 'true');
+  var header = document.querySelector('[data-header]');
+  if (header) {
+    var applyHeaderState = function () {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+    applyHeaderState();
+    window.addEventListener('scroll', applyHeaderState, { passive: true });
+  }
+
+  /* ------------------------------------------------------ desktop dropdowns */
+
+  var dropdowns = Array.prototype.slice.call(document.querySelectorAll('[data-dropdown]'));
+
+  function closeDropdown(dropdown) {
+    var trigger = dropdown.querySelector('[data-dropdown-trigger]');
+    var menu = dropdown.querySelector('[data-dropdown-menu]');
+    if (!trigger || !menu) return;
+    trigger.setAttribute('aria-expanded', 'false');
+    menu.hidden = true;
+  }
+
+  function openDropdown(dropdown) {
+    dropdowns.forEach(function (other) {
+      if (other !== dropdown) closeDropdown(other);
     });
-  });
-}
+    var trigger = dropdown.querySelector('[data-dropdown-trigger]');
+    var menu = dropdown.querySelector('[data-dropdown-menu]');
+    if (!trigger || !menu) return;
+    trigger.setAttribute('aria-expanded', 'true');
+    menu.hidden = false;
+  }
 
+  dropdowns.forEach(function (dropdown) {
+    var trigger = dropdown.querySelector('[data-dropdown-trigger]');
+    if (!trigger) return;
+    var hoverTimer;
 
-// Compact "Available now" contact button in the header on mobile
-const desktopCta = document.querySelector('.header-consultation');
-const headerToggle = document.querySelector('#menuToggle');
-if (desktopCta && headerToggle && !document.querySelector('.header-cta-mobile')) {
-  const mobileCta = document.createElement('a');
-  mobileCta.className = 'btn header-cta-mobile lg:hidden';
-  mobileCta.href = desktopCta.getAttribute('href') || '#';
-  const ctaTarget = desktopCta.getAttribute('target');
-  const ctaRel = desktopCta.getAttribute('rel');
-  if (ctaTarget) mobileCta.setAttribute('target', ctaTarget);
-  if (ctaRel) mobileCta.setAttribute('rel', ctaRel);
-  mobileCta.setAttribute('aria-label', 'Contact us — available now');
-  mobileCta.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span class="header-cta-mobile-label">Available now</span>';
-  headerToggle.parentNode.insertBefore(mobileCta, headerToggle);
-}
+    trigger.addEventListener('click', function () {
+      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      if (isOpen) closeDropdown(dropdown);
+      else openDropdown(dropdown);
+    });
 
-// Pulse all live indicators
-document.querySelectorAll('.live-dot').forEach((dot) => dot.classList.add('blinking'));
+    // Pointer users get hover, with a short close delay so the gap is forgiving.
+    dropdown.addEventListener('mouseenter', function () {
+      if (!window.matchMedia('(min-width: 1080px)').matches) return;
+      window.clearTimeout(hoverTimer);
+      openDropdown(dropdown);
+    });
 
-const serviceDropdowns = document.querySelectorAll('.dropdown');
+    dropdown.addEventListener('mouseleave', function () {
+      if (!window.matchMedia('(min-width: 1080px)').matches) return;
+      window.clearTimeout(hoverTimer);
+      hoverTimer = window.setTimeout(function () {
+        closeDropdown(dropdown);
+      }, 260);
+    });
 
-serviceDropdowns.forEach((dropdown) => {
-  const trigger = dropdown.querySelector('[aria-haspopup="true"]');
-  let closeTimer;
+    // Keyboard users get focus-within behaviour and Escape to close.
+    dropdown.addEventListener('focusout', function (event) {
+      if (!dropdown.contains(event.relatedTarget)) closeDropdown(dropdown);
+    });
 
-  const openDropdown = () => {
-    window.clearTimeout(closeTimer);
-    dropdown.classList.add('is-open');
-    if (trigger) trigger.setAttribute('aria-expanded', 'true');
-  };
-
-  const scheduleClose = () => {
-    window.clearTimeout(closeTimer);
-    closeTimer = window.setTimeout(() => {
-      dropdown.classList.remove('is-open');
-      if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    }, 450);
-  };
-
-  dropdown.addEventListener('mouseenter', openDropdown);
-  dropdown.addEventListener('mouseleave', scheduleClose);
-  dropdown.addEventListener('focusin', openDropdown);
-  dropdown.addEventListener('focusout', scheduleClose);
-});
-
-const revealElements = document.querySelectorAll('.reveal');
-
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+    dropdown.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeDropdown(dropdown);
+        trigger.focus();
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  });
 
-  revealElements.forEach((element) => revealObserver.observe(element));
-} else {
-  revealElements.forEach((element) => element.classList.add('visible'));
-}
+  document.addEventListener('click', function (event) {
+    dropdowns.forEach(function (dropdown) {
+      if (!dropdown.contains(event.target)) closeDropdown(dropdown);
+    });
+  });
 
-const formspreeForms = document.querySelectorAll('.js-formspree-form');
+  /* ----------------------------------------------------------- mobile menu */
 
-formspreeForms.forEach((form) => {
-  const status = form.querySelector('.form-status');
-  const submitButton = form.querySelector('button[type="submit"]');
-  const initialButtonText = submitButton ? submitButton.textContent : '';
+  var menuToggle = document.querySelector('[data-menu-toggle]');
+  var mobileNav = document.querySelector('[data-mobile-nav]');
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+  function setMobileNav(open) {
+    if (!menuToggle || !mobileNav) return;
+    mobileNav.hidden = !open;
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
 
-    if (status) {
-      status.textContent = 'Sending your request...';
-      status.classList.remove('form-status-success', 'form-status-error');
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', function () {
+      setMobileNav(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    mobileNav.addEventListener('click', function (event) {
+      if (event.target.closest('a')) setMobileNav(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMobileNav(false);
+        menuToggle.focus();
+      }
+    });
+
+    // Reset when the layout crosses into desktop so state cannot get stuck.
+    window.matchMedia('(min-width: 1080px)').addEventListener('change', function (event) {
+      if (event.matches) setMobileNav(false);
+    });
+  }
+
+  /* -------------------------------------------------------- scroll reveals */
+
+  var revealTargets = document.querySelectorAll('[data-reveal]');
+  if (revealTargets.length) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      revealTargets.forEach(function (element) {
+        element.classList.add('is-visible');
+      });
+    } else {
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -60px 0px', threshold: 0.05 },
+      );
+      revealTargets.forEach(function (element) {
+        revealObserver.observe(element);
+      });
     }
+  }
 
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
+  /* ------------------------------------------------------ sticky mobile CTA */
+
+  var stickyCta = document.querySelector('[data-sticky-cta]');
+  if (stickyCta) {
+    // Never show it on the pages where the review form is already the content.
+    var onReviewPage = Boolean(document.querySelector('#website-review, #review'));
+    if (!onReviewPage) {
+      stickyCta.hidden = false;
+      var toggleSticky = function () {
+        var scrolledEnough = window.scrollY > 620;
+        var footer = document.querySelector('.site-footer');
+        var footerVisible = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+        stickyCta.classList.toggle('is-visible', scrolledEnough && !footerVisible);
+      };
+      toggleSticky();
+      window.addEventListener('scroll', toggleSticky, { passive: true });
     }
+  }
 
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
+  /* ------------------------------------------------------------------ forms */
+
+  var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var PHONE_PATTERN = /^[+()\d][\d\s\-().]{6,}$/;
+
+  function fieldLabel(field) {
+    var label = field.form ? field.form.querySelector('label[for="' + field.id + '"]') : null;
+    if (!label) return 'This field';
+    return label.textContent.replace('*', '').trim();
+  }
+
+  function validateField(field) {
+    var value = (field.value || '').trim();
+    var name = fieldLabel(field);
+
+    if (field.required && !value) {
+      return name + ' is required.';
+    }
+    if (!value) return null;
+
+    if (field.type === 'email' && !EMAIL_PATTERN.test(value)) {
+      return 'Enter a valid email address, for example name@business.com.';
+    }
+    if (field.type === 'tel' && !PHONE_PATTERN.test(value)) {
+      return 'Enter a valid phone number so we can reach you.';
+    }
+    if (field.type === 'url') {
+      var candidate = /^https?:\/\//i.test(value) ? value : 'https://' + value;
+      try {
+        var parsed = new URL(candidate);
+        if (!parsed.hostname.includes('.')) throw new Error('invalid');
+      } catch (error) {
+        return 'Enter a valid website address, for example yourbusiness.com.';
+      }
+    }
+    if (field.minLength > 0 && value.length < field.minLength) {
+      return name + ' needs at least ' + field.minLength + ' characters.';
+    }
+    return null;
+  }
+
+  function showFieldError(field, message) {
+    var errorEl = document.querySelector('[data-error-for="' + field.id + '"]');
+    if (message) {
+      field.setAttribute('aria-invalid', 'true');
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+        field.setAttribute('aria-describedby', errorEl.id || field.id + '-error');
+        if (!errorEl.id) errorEl.id = field.id + '-error';
+      }
+    } else {
+      field.removeAttribute('aria-invalid');
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.hidden = true;
+      }
+    }
+  }
+
+  function setStatus(statusEl, message, state) {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.classList.remove('is-error', 'is-success', 'is-pending');
+    if (state) statusEl.classList.add('is-' + state);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ajax-form]'), function (form) {
+    var statusEl = form.querySelector('.form__status');
+    var submitButton = form.querySelector('button[type="submit"]');
+    var labelEl = form.querySelector('[data-submit-label]');
+    var originalLabel = labelEl ? labelEl.textContent : '';
+    var fields = Array.prototype.slice.call(form.querySelectorAll('input, select, textarea')).filter(function (field) {
+      return field.type !== 'hidden' && field.name !== '_gotcha';
+    });
+
+    fields.forEach(function (field) {
+      // Validate on blur, then live-correct once the field has been marked bad.
+      field.addEventListener('blur', function () {
+        showFieldError(field, validateField(field));
+      });
+      field.addEventListener('input', function () {
+        if (field.getAttribute('aria-invalid') === 'true') showFieldError(field, validateField(field));
+      });
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var firstInvalid = null;
+      fields.forEach(function (field) {
+        var message = validateField(field);
+        showFieldError(field, message);
+        if (message && !firstInvalid) firstInvalid = field;
+      });
+
+      if (firstInvalid) {
+        setStatus(statusEl, 'Please check the highlighted fields and try again.', 'error');
+        firstInvalid.focus();
+        return;
+      }
+
+      if (submitButton) submitButton.disabled = true;
+      if (labelEl) labelEl.textContent = 'Sending…';
+      setStatus(statusEl, 'Sending your request…', 'pending');
+
+      fetch(form.action, {
+        method: form.method || 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
-      });
-
-      if (!response.ok) {
-        throw new Error('Form submission failed');
-      }
-
-      form.reset();
-      if (status) {
-        status.textContent = 'Thank you. We will get back shortly.';
-        status.classList.add('form-status-success');
-      }
-    } catch (error) {
-      if (status) {
-        status.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
-        status.classList.add('form-status-error');
-      }
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = initialButtonText;
-      }
-    }
-  });
-});
-
-const initializeGa4Tracking = () => {
-  if (window.__designRankGa4TrackingInitialized) return;
-  window.__designRankGa4TrackingInitialized = true;
-
-  const hasGtag = () => typeof window.gtag === 'function';
-  const cleanText = (value) => (value || '').replace(/\s+/g, ' ').trim();
-  const pagePath = () => window.location.pathname || '/';
-  const elementText = (element) => cleanText(
-    element?.innerText
-    || element?.textContent
-    || element?.getAttribute?.('aria-label')
-    || element?.getAttribute?.('title')
-    || element?.getAttribute?.('value')
-    || element?.name
-  );
-  const targetUrl = (element) => element?.href || element?.formAction || element?.getAttribute?.('action') || '';
-  const sendEvent = (eventName, parameters) => {
-    if (!hasGtag()) return;
-    // GA4 custom events must be sent with the 'event' command.
-    window.gtag('event', eventName, parameters);
-  };
-
-  const keywords = {
-    contact: [
-      'contact', 'consult', 'consultation', 'call', 'phone', 'email', 'mail', 'whatsapp', 'wa.me',
-      'available', 'availability', 'live now', '24/7', 'urgent', 'help', 'inquiry', 'inquiries',
-      'request', 'quote', 'proposal', 'project', 'business', 'start', 'plan', 'scope', 'message', 'submit', 'send'
-    ],
-    primary: [
-      'free consultation', 'start', 'get started', 'request', 'contact', 'quote', 'proposal', 'view services',
-      'learn more', 'book', 'schedule', 'live now', 'available', 'urgent', 'help', 'business inquiry', 'send', 'submit'
-    ]
-  };
-
-  const textContext = (element) => {
-    const pieces = [];
-    if (element) {
-      pieces.push(elementText(element));
-      pieces.push(element.getAttribute?.('href'));
-      pieces.push(element.getAttribute?.('class'));
-      pieces.push(element.getAttribute?.('id'));
-      pieces.push(element.getAttribute?.('name'));
-    }
-
-    const contactArea = element?.closest?.('form, .contact, .consultation-section, .cta-section, header, .pricing-card');
-    if (contactArea) {
-      pieces.push(elementText(contactArea));
-      pieces.push(contactArea.getAttribute?.('class'));
-      pieces.push(contactArea.getAttribute?.('id'));
-    }
-
-    return cleanText(pieces.filter(Boolean).join(' ')).toLowerCase();
-  };
-
-  const matchesAny = (value, terms) => terms.some((term) => value.includes(term));
-  const ctaType = (element, context) => {
-    const href = (element?.getAttribute?.('href') || '').toLowerCase();
-    if (href.startsWith('tel:')) return 'phone';
-    if (href.startsWith('mailto:')) return 'email';
-    if (href.includes('wa.me') || href.includes('whatsapp')) return 'whatsapp';
-    if (context.includes('urgent')) return 'urgent_help';
-    if (context.includes('available') || context.includes('live now') || context.includes('24/7')) return 'live_availability';
-    if (context.includes('consult')) return 'consultation';
-    if (context.includes('business') || context.includes('inquir')) return 'business_inquiry';
-    if (context.includes('contact') || context.includes('message')) return 'contact';
-    return 'primary_cta';
-  };
-
-  const serviceName = (element) => {
-    const card = element.closest?.('.service-card, .pricing-card, article, .dropdown-panel');
-    return cleanText(card?.querySelector?.('h2, h3, .section-kicker')?.textContent) || elementText(element);
-  };
-
-  const portfolioName = (element) => {
-    const card = element.closest?.('.portfolio-card, article');
-    return cleanText(card?.querySelector?.('h2, h3, .section-kicker')?.textContent) || elementText(element);
-  };
-
-  document.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target : event.target?.parentElement;
-    const clickable = target?.closest?.('a, button, input[type="button"], input[type="submit"]');
-    if (!clickable) return;
-
-    const context = textContext(clickable);
-    const text = elementText(clickable);
-    const url = targetUrl(clickable);
-    const isContact = matchesAny(context, keywords.contact) || clickable.closest?.('form, .consultation-section, .cta-section');
-    const isPrimary = clickable.matches?.('.btn, .text-link, button, input[type="submit"]') || matchesAny(context, keywords.primary);
-
-    if (isPrimary && (isContact || matchesAny(context, keywords.primary))) {
-      sendEvent('cta_click', {
-        button_text: text,
-        page_path: pagePath(),
-        target_url: url,
-        cta_type: ctaType(clickable, context),
-      });
-    }
-
-    if (isContact) {
-      sendEvent('contact_interaction', {
-        interaction_type: ctaType(clickable, context),
-        button_text: text,
-        page_path: pagePath(),
-        target_url: url,
-      });
-    }
-
-    const href = (clickable.getAttribute?.('href') || '').toLowerCase();
-    if (clickable.closest?.('.service-card, .service-dropdown, .mini-link-list') || href.includes('/services/') || href.includes('services.html')) {
-      sendEvent('service_click', {
-        service_name: serviceName(clickable),
-        page_path: pagePath(),
-        target_url: url,
-      });
-    }
-
-    if (clickable.closest?.('.portfolio-card') || href.includes('portfolio') || context.includes('portfolio') || context.includes('visit website')) {
-      sendEvent('portfolio_click', {
-        portfolio_name: portfolioName(clickable),
-        portfolio_url: url,
-        page_path: pagePath(),
-      });
-    }
-  });
-
-  document.addEventListener('submit', (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement)) return;
-
-    const submitter = event.submitter || form.querySelector('button[type="submit"], input[type="submit"]');
-    const formName = cleanText(form.getAttribute('aria-label') || form.getAttribute('id') || form.getAttribute('name') || form.querySelector('h2, h3, legend')?.textContent || 'Contact form');
-
-    sendEvent('form_submit', {
-      form_name: formName,
-      page_path: pagePath(),
-      form_action: form.getAttribute('action') || '',
-    });
-
-    sendEvent('contact_interaction', {
-      interaction_type: 'form_submit',
-      button_text: elementText(submitter) || 'Submit',
-      page_path: pagePath(),
-      target_url: form.getAttribute('action') || '',
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Request failed with status ' + response.status);
+          form.reset();
+          fields.forEach(function (field) {
+            showFieldError(field, null);
+          });
+          setStatus(
+            statusEl,
+            'Thank you. Your request has been received and we will be in touch within two to three business days.',
+            'success',
+          );
+          track('form_submit_success', { form_id: form.id || 'form', page_path: pagePath() });
+        })
+        .catch(function () {
+          setStatus(
+            statusEl,
+            'Something went wrong sending your request. Please try again, or message us on WhatsApp and we will pick it up from there.',
+            'error',
+          );
+        })
+        .finally(function () {
+          if (submitButton) submitButton.disabled = false;
+          if (labelEl) labelEl.textContent = originalLabel;
+        });
     });
   });
-};
 
-initializeGa4Tracking();
+  /* ------------------------------------------------------- GA4 event tracking */
+
+  function pagePath() {
+    return window.location.pathname || '/';
+  }
+
+  function track(eventName, params) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, params);
+  }
+
+  function textOf(element) {
+    return (element.innerText || element.textContent || element.getAttribute('aria-label') || '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 100);
+  }
+
+  document.addEventListener('click', function (event) {
+    var target = event.target instanceof Element ? event.target : null;
+    var link = target ? target.closest('a') : null;
+    if (!link) return;
+
+    var href = link.getAttribute('href') || '';
+    var params = { link_text: textOf(link), page_path: pagePath(), target_url: href };
+
+    if (href.indexOf('wa.me') !== -1) {
+      track('contact_whatsapp', params);
+    } else if (href.indexOf('tel:') === 0) {
+      track('contact_phone', params);
+    } else if (href.indexOf('mailto:') === 0) {
+      track('contact_email', params);
+    } else if (href.indexOf('/website-review') === 0) {
+      track('cta_website_review', params);
+    } else if (href.indexOf('/contact') === 0) {
+      track('cta_contact', params);
+    } else if (href.indexOf('/services/') === 0) {
+      track('service_click', params);
+    } else if (href.indexOf('/industries/') === 0) {
+      track('industry_click', params);
+    } else if (link.hostname && link.hostname !== window.location.hostname) {
+      track('outbound_click', params);
+    }
+  });
+})();

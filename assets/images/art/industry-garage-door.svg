@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Garage door service call</title><desc id="d">A technician servicing a residential garage door with a branded service van on the driveway.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5f7fa"/><stop offset="1" stop-color="#e8edf4"/></linearGradient></defs>
+<rect width="800" height="560" rx="20" fill="url(#sky)"/>
+<path d="M0 425.6 h800 v134.39999999999998 a20 20 0 0 1 -20 20 h-760 a20 20 0 0 1 -20 -20 Z" fill="#dcdcd6"/>
+
+  <g>
+    <path d="M120 365.6 L330 235.60000000000002 L540 365.6 Z" fill="#16345c"/>
+    <rect x="140" y="365.6" width="380" height="60" fill="#ffffff" stroke="#dde3ec"/>
+  </g>
+  <rect x="166" y="257.6" width="328" height="168" rx="6" fill="#ece7de"/>
+  <rect x="176" y="267.6" width="308" height="148" rx="4" fill="#ffffff" stroke="#dbe4ef"/>
+  <rect x="184" y="275.6" width="292" height="30" rx="3" fill="#f7f5f1" stroke="#dbe4ef"/><rect x="184" y="311.6" width="292" height="30" rx="3" fill="#f7f5f1" stroke="#dbe4ef"/><rect x="184" y="347.6" width="292" height="30" rx="3" fill="#f7f5f1" stroke="#dbe4ef"/><rect x="184" y="383.6" width="292" height="30" rx="3" fill="#f7f5f1" stroke="#dbe4ef"/>
+  <rect x="200" y="277.6" width="52" height="26" rx="3" fill="#eaf1f8"/><rect x="272" y="277.6" width="52" height="26" rx="3" fill="#eaf1f8"/><rect x="344" y="277.6" width="52" height="26" rx="3" fill="#eaf1f8"/><rect x="416" y="277.6" width="52" height="26" rx="3" fill="#eaf1f8"/>
+  <g transform="translate(560 429.6) scale(1.05)">
+  <rect x="-11" y="-34" width="22" height="34" rx="8" fill="#23507f"/>
+  <rect x="-9" y="0" width="7" height="26" rx="3.5" fill="#16345c"/>
+  <rect x="2" y="0" width="7" height="26" rx="3.5" fill="#16345c"/>
+  <circle cx="0" cy="-44" r="9" fill="#c8a288"/>
+  <path d="M-13 -47 a13 13 0 0 1 26 0 Z" fill="#b08948"/>
+  <rect x="-16" y="-48" width="32" height="4" rx="2" fill="#b08948"/>
+</g>
+  <rect x="588" y="391.6" width="12" height="46" rx="4" fill="#b08948"/>
+  <g transform="translate(596 433.6) scale(0.78)">
+  <path d="M0 0 h150 v-46 h-44 l-22 -26 H0 Z" fill="#ffffff" stroke="#dde3ec" stroke-width="2"/>
+  <path d="M6 -68 h74 l18 22 H6 Z" fill="#eaf1f8"/>
+  <rect x="10" y="-40" width="86" height="24" rx="5" fill="#23507f" opacity="0.14"/>
+  <text x="53" y="-24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#23507f">DOORS</text>
+  <circle cx="34" cy="2" r="15" fill="#0b1f3a"/><circle cx="34" cy="2" r="6" fill="#dbe4ef"/>
+  <circle cx="118" cy="2" r="15" fill="#0b1f3a"/><circle cx="118" cy="2" r="6" fill="#dbe4ef"/>
+</g>
+  <path d="M60 425.6 h680" stroke="#dbe4ef" stroke-width="3"/>
+  <g transform="translate(70 84)" filter="url(#soft)">
+    <rect width="196" height="66" rx="14" fill="#ffffff" stroke="#dde3ec"/>
+    <text x="20" y="30" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0b1f3a">Same-day repair</text>
+    <text x="20" y="50" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#5b6b80">Spring replaced in 90 minutes</text>
+  </g>
+</svg>

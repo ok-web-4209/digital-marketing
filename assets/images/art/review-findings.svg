@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Website review findings</title><desc id="d">A website screenshot marked up with review findings for mobile usability, calls to action and local SEO.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="800" rx="20" fill="#f7f5f1"/>
+<g filter="url(#soft)" transform="translate(60 60)">
+  <rect width="560" height="400" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <rect width="560" height="40" rx="16" fill="#f7f5f1"/><rect y="24" width="560" height="16" fill="#f7f5f1"/>
+  <line y1="40" x2="560" y2="40" stroke="#dde3ec"/>
+  <rect x="24" y="62" width="110" height="14" rx="5" fill="#c4bdb2"/>
+  <rect x="300" y="66" width="50" height="8" rx="4" fill="#d3cdc3"/><rect x="360" y="66" width="50" height="8" rx="4" fill="#d3cdc3"/><rect x="420" y="66" width="50" height="8" rx="4" fill="#d3cdc3"/>
+  <rect x="24" y="98" width="512" height="130" rx="6" fill="#e6e1d8"/>
+  <rect x="48" y="138" width="250" height="16" rx="4" fill="#b3aca1"/><rect x="48" y="168" width="320" height="10" rx="5" fill="#c4bdb2"/><rect x="48" y="190" width="280" height="10" rx="5" fill="#c4bdb2"/>
+  <rect x="24" y="248" width="160" height="76" rx="6" fill="#efeae1"/><rect x="40" y="268" width="84" height="9" rx="4.5" fill="#c4bdb2"/><rect x="40" y="288" width="124" height="7" rx="3.5" fill="#d3cdc3"/><rect x="200" y="248" width="160" height="76" rx="6" fill="#efeae1"/><rect x="216" y="268" width="84" height="9" rx="4.5" fill="#c4bdb2"/><rect x="216" y="288" width="124" height="7" rx="3.5" fill="#d3cdc3"/><rect x="376" y="248" width="160" height="76" rx="6" fill="#efeae1"/><rect x="392" y="268" width="84" height="9" rx="4.5" fill="#c4bdb2"/><rect x="392" y="288" width="124" height="7" rx="3.5" fill="#d3cdc3"/>
+  <rect x="24" y="344" width="500" height="8" rx="4" fill="#ddd7cc"/><rect x="24" y="362" width="460" height="8" rx="4" fill="#ddd7cc"/>
+  <g stroke="#b4472f" fill="none" stroke-width="2.6">
+    <rect x="286" y="52" width="200" height="34" rx="8" stroke-dasharray="7 5"/>
+    <rect x="34" y="238" width="500" height="96" rx="10" stroke-dasharray="7 5"/>
+  </g>
+</g>
+<g filter="url(#soft)" transform="translate(560 256)">
+  <rect width="380" height="62" rx="14" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="34" cy="31" r="16" fill="#b4472f"/>
+  <text x="34" y="36" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">1</text>
+  <text x="64" y="37" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#16345c">No visible quote button</text>
+</g><g filter="url(#soft)" transform="translate(560 336)">
+  <rect width="380" height="62" rx="14" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="34" cy="31" r="16" fill="#b08948"/>
+  <text x="34" y="36" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">2</text>
+  <text x="64" y="37" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#16345c">Services not separated</text>
+</g><g filter="url(#soft)" transform="translate(560 416)">
+  <rect width="380" height="62" rx="14" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="34" cy="31" r="16" fill="#b08948"/>
+  <text x="34" y="36" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">3</text>
+  <text x="64" y="37" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#16345c">No service-area pages</text>
+</g><g filter="url(#soft)" transform="translate(560 496)">
+  <rect width="380" height="62" rx="14" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="34" cy="31" r="16" fill="#23507f"/>
+  <text x="34" y="36" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">4</text>
+  <text x="64" y="37" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#16345c">Reviews not displayed</text>
+</g>
+<g filter="url(#soft)" transform="translate(60 560)">
+  <rect width="440" height="180" rx="18" fill="#0b1f3a"/>
+  <text x="32" y="56" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">What you receive</text>
+  <g transform="translate(32 86)">
+    <circle cx="9" cy="0" r="9" fill="rgba(255,255,255,0.14)"/>
+    <path d="M5 0 l3 3 5.4 -6" stroke="#9ce0bd" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="30" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="500" fill="#c9d8e8">A plain-language summary</text></g><g transform="translate(32 116)">
+    <circle cx="9" cy="0" r="9" fill="rgba(255,255,255,0.14)"/>
+    <path d="M5 0 l3 3 5.4 -6" stroke="#9ce0bd" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="30" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="500" fill="#c9d8e8">The changes we would make first</text></g><g transform="translate(32 146)">
+    <circle cx="9" cy="0" r="9" fill="rgba(255,255,255,0.14)"/>
+    <path d="M5 0 l3 3 5.4 -6" stroke="#9ce0bd" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="30" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="500" fill="#c9d8e8">Ranked by likely impact</text></g>
+</g>
+</svg>

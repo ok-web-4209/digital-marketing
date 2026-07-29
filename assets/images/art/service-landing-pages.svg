@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Campaign landing page and conversions</title><desc id="d">A campaign landing page mockup with a headline, quote form and trust badges, next to a bar chart of form submissions.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="750" rx="20" fill="#f7f5f1"/>
+<circle cx="120" cy="640" r="110" fill="#f3e8d3" opacity="0.55"/>
+<g filter="url(#soft)"><g>
+  <rect x="60" y="80" width="512" height="330" rx="18" fill="#ffffff" stroke="#dde3ec"/>
+  <path d="M60 110 v-14 a18 18 0 0 1 18 -18 h476 a18 18 0 0 1 18 18 v14 Z" fill="#f7f5f1"/>
+  <line x1="60" y1="110" x2="572" y2="110" stroke="#dde3ec"/>
+  <circle cx="78" cy="95" r="4" fill="#dbe4ef"/>
+  <circle cx="92" cy="95" r="4" fill="#dbe4ef"/>
+  <circle cx="106" cy="95" r="4" fill="#dbe4ef"/>
+  <rect x="122" y="88" width="194.56" height="14" rx="7" fill="#dbe4ef"/>
+  <text x="130" y="99" font-family="system-ui, sans-serif" font-size="9" fill="#5b6b80">driveway-replacement-fairview</text>
+  <g transform="translate(60 110)">
+  <rect x="20" y="18" width="76" height="11" rx="6" fill="#0b1f3a"/>
+  <rect x="400" y="10" width="92" height="26" rx="13" fill="#b08948"/><text x="446" y="26.96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Call now</text>
+  <rect x="20" y="58" width="300" height="18" rx="9" fill="#0b1f3a"/>
+  <rect x="20" y="88" width="240" height="10" rx="5" fill="#dbe4ef"/>
+  <rect x="20" y="108" width="200" height="10" rx="5" fill="#dbe4ef"/>
+  <g transform="translate(20 140)"><circle cx="8" cy="0" r="8" fill="#e2f0e9"/><path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="26" y="-5" width="150" height="8" rx="4" fill="#dbe4ef"/></g><g transform="translate(20 166)"><circle cx="8" cy="0" r="8" fill="#e2f0e9"/><path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="26" y="-5" width="150" height="8" rx="4" fill="#dbe4ef"/></g><g transform="translate(20 192)"><circle cx="8" cy="0" r="8" fill="#e2f0e9"/><path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="26" y="-5" width="150" height="8" rx="4" fill="#dbe4ef"/></g>
+  <rect x="304" y="52" width="188" height="212" rx="14" fill="#f7f5f1" stroke="#dde3ec"/>
+  <text x="322" y="78" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#0b1f3a">Get your free quote</text>
+  <rect x="322" y="92" width="152" height="28" rx="8" fill="#ffffff" stroke="#dde3ec"/><rect x="332" y="102" width="60" height="7" rx="3.5" fill="#dbe4ef"/><rect x="322" y="132" width="152" height="28" rx="8" fill="#ffffff" stroke="#dde3ec"/><rect x="332" y="142" width="60" height="7" rx="3.5" fill="#dbe4ef"/><rect x="322" y="172" width="152" height="28" rx="8" fill="#ffffff" stroke="#dde3ec"/><rect x="332" y="182" width="60" height="7" rx="3.5" fill="#dbe4ef"/>
+  <rect x="322" y="214" width="152" height="32" rx="16" fill="#0b1f3a"/><text x="398" y="233.96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Request quote</text>
+  <rect x="20" y="228" width="84" height="34" rx="8" fill="#f3e8d3"/><rect x="116" y="228" width="84" height="34" rx="8" fill="#f3e8d3"/><rect x="212" y="228" width="84" height="34" rx="8" fill="#f3e8d3"/></g>
+</g></g>
+<g filter="url(#soft)" transform="translate(608 200)">
+  <rect width="332" height="290" rx="18" fill="#ffffff" stroke="#dde3ec"/>
+  <text x="24" y="44" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#0b1f3a">Quote requests</text>
+  <text x="308" y="44" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5b6b80">per week</text>
+  <rect x="30" y="204.1" width="26" height="39.9" rx="7" fill="#dbe4ef"/><rect x="72" y="189.4" width="26" height="54.6" rx="7" fill="#dbe4ef"/><rect x="114" y="195.7" width="26" height="48.300000000000004" rx="7" fill="#dbe4ef"/><rect x="156" y="166.3" width="26" height="77.7" rx="7" fill="#dbe4ef"/><rect x="198" y="143.2" width="26" height="100.80000000000001" rx="7" fill="#0b1f3a"/><rect x="240" y="120.1" width="26" height="123.9" rx="7" fill="#0b1f3a"/><rect x="282" y="86.5" width="26" height="157.5" rx="7" fill="#0b1f3a"/>
+  <line x1="24" y1="252" x2="308" y2="252" stroke="#dde3ec"/>
+  <text x="24" y="274" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b6b80">Campaign pages launched</text>
+</g>
+<g filter="url(#soft)" transform="translate(96 508)">
+  <rect width="380" height="98" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <circle cx="44" cy="49" r="20" fill="#f3e8d3"/>
+  <path d="M45 36 l-9 15 h8 l-2 12 10 -16 h-8 Z" fill="#b08948"/>
+  <text x="78" y="42" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0b1f3a">One page, one action</text>
+  <text x="78" y="66" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#5b6b80">Matched to the search that brought them</text>
+</g>
+</svg>

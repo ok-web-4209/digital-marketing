@@ -1,14 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
-  <title id="title">Hoffman Legal website preview</title>
-  <desc id="desc">Stylized website screenshot preview for hoffman.legal.</desc>
-  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#7c3aed"/></linearGradient><linearGradient id="accent" x1="0" x2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs>
-  <rect width="1200" height="760" rx="48" fill="url(#bg)"/>
-  <rect x="72" y="70" width="1056" height="620" rx="30" fill="#ffffff"/>
-  <rect x="72" y="70" width="1056" height="86" rx="30" fill="#111827"/>
-  <circle cx="124" cy="113" r="12" fill="#ef4444"/><circle cx="164" cy="113" r="12" fill="#f59e0b"/><circle cx="204" cy="113" r="12" fill="#22c55e"/>
-  <rect x="260" y="101" width="198" height="22" rx="11" fill="#e2e8f0" opacity=".9"/><rect x="808" y="96" width="214" height="32" rx="16" fill="#7c3aed"/>
-  <rect x="126" y="215" width="420" height="42" rx="12" fill="#0f172a"/><rect x="126" y="278" width="500" height="24" rx="12" fill="#64748b"/><rect x="126" y="322" width="448" height="24" rx="12" fill="#94a3b8"/>
-  <rect x="126" y="390" width="196" height="54" rx="27" fill="#7c3aed"/><rect x="346" y="390" width="172" height="54" rx="27" fill="#e2e8f0"/>
-  <rect x="680" y="206" width="330" height="310" rx="24" fill="url(#accent)"/><path d="M758 448h174M790 400h110M836 268l74 74-74 74-74-74z" stroke="#111827" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".86"/>
-  <rect x="126" y="535" width="250" height="78" rx="18" fill="#f1f5f9"/><rect x="410" y="535" width="250" height="78" rx="18" fill="#f1f5f9"/><rect x="694" y="535" width="250" height="78" rx="18" fill="#f1f5f9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">hoffman.legal website preview</title><desc id="d">Preview of the hoffman.legal attorney website showing practice areas and a consultation call to action.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter><linearGradient id="mockWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1f3a"/><stop offset="1" stop-color="#23507f"/></linearGradient></defs>
+<rect width="1200" height="760" rx="24" fill="#f7f5f1"/>
+<g filter="url(#soft)"><g>
+  <rect x="12" y="90" width="1176" height="500" rx="20" fill="#ffffff" stroke="#dde3ec"/>
+  <path d="M12 120 v-16 a20 20 0 0 1 20 -20 h1136 a20 20 0 0 1 20 20 v16 Z" fill="#f7f5f1"/>
+  <line x1="12" y1="120" x2="1188" y2="120" stroke="#dde3ec"/>
+  <circle cx="30" cy="105" r="4" fill="#dbe4ef"/>
+  <circle cx="44" cy="105" r="4" fill="#dbe4ef"/>
+  <circle cx="58" cy="105" r="4" fill="#dbe4ef"/>
+  <rect x="74" y="98" width="446.88" height="14" rx="7" fill="#dbe4ef"/>
+  <text x="82" y="109" font-family="system-ui, sans-serif" font-size="9" fill="#5b6b80">hoffman.legal</text>
+  <g transform="translate(12 120)">
+  <rect x="24" y="20" width="96" height="13" rx="6" fill="#0b1f3a"/>
+  <rect x="320" y="23" width="46" height="8" rx="4" fill="#dbe4ef"/><rect x="378" y="23" width="46" height="8" rx="4" fill="#dbe4ef"/><rect x="436" y="23" width="46" height="8" rx="4" fill="#dbe4ef"/>
+  <rect x="880" y="12" width="118" height="28" rx="14" fill="#b08948"/><text x="939" y="29.96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Free consultation</text>
+  <rect x="24" y="58" width="1104" height="228" rx="14" fill="#0b1f3a"/>
+  <rect x="24" y="58" width="1104" height="228" rx="14" fill="url(#mockWash)"/>
+  <text x="56" y="130" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="800" fill="#ffffff">Clear legal guidance</text>
+  <text x="56" y="166" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#a9bed4">Practice areas explained in plain language</text>
+  <rect x="56" y="190" width="176" height="40" rx="20" fill="#b08948"/><text x="144" y="214.68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0b1f3a">Free consultation</text>
+  <rect x="244" y="190" width="150" height="40" rx="20" fill="rgba(255,255,255,0.15)"/><text x="319" y="214.68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Our work</text>
+  <rect x="880" y="92" width="216" height="76" rx="12" fill="rgba(255,255,255,0.12)"/><text x="898" y="122" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Consultation</text><text x="898" y="146" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#a9bed4">Response within one business day</text>
+  <rect x="24" y="306" width="262" height="128" rx="12" fill="#f7f5f1" stroke="#dde3ec"/>
+      <circle cx="56" cy="338" r="14" fill="#f3e8d3"/>
+      <text x="82" y="344" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0b1f3a">Practice areas</text>
+      <rect x="44" y="364" width="214" height="8" rx="4" fill="#dbe4ef"/>
+      <rect x="44" y="382" width="186" height="8" rx="4" fill="#dbe4ef"/>
+      <text x="44" y="414" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3a6a9e">View all</text><rect x="306" y="306" width="262" height="128" rx="12" fill="#f7f5f1" stroke="#dde3ec"/>
+      <circle cx="338" cy="338" r="14" fill="#f3e8d3"/>
+      <text x="364" y="344" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0b1f3a">About the firm</text>
+      <rect x="326" y="364" width="214" height="8" rx="4" fill="#dbe4ef"/>
+      <rect x="326" y="382" width="186" height="8" rx="4" fill="#dbe4ef"/>
+      <text x="326" y="414" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3a6a9e">Read more</text><rect x="588" y="306" width="262" height="128" rx="12" fill="#f7f5f1" stroke="#dde3ec"/>
+      <circle cx="620" cy="338" r="14" fill="#f3e8d3"/>
+      <text x="646" y="344" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0b1f3a">Client resources</text>
+      <rect x="608" y="364" width="214" height="8" rx="4" fill="#dbe4ef"/>
+      <rect x="608" y="382" width="186" height="8" rx="4" fill="#dbe4ef"/>
+      <text x="608" y="414" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3a6a9e">Browse guides</text></g>
+</g></g>
 </svg>
