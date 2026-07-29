@@ -40,6 +40,28 @@ assets/
 **Everything in the root is build output.** Edit `src/`, then run `npm run build`.
 Editing a generated `.html` file directly will be overwritten on the next build.
 
+### Internal URLs must stay relative
+
+The site is served from a subpath on GitHub Pages
+(`ok-web-4209.github.io/digital-marketing/`), so a root-relative URL like
+`/assets/css/style.css` resolves against the origin and 404s.
+
+Components author links as root-relative because it reads better, and
+`relativizeUrls()` in `src/lib/urls.mjs` rewrites them to document-relative
+paths (`assets/…`, `../assets/…`) as the last step of rendering each page. The
+output therefore works from a subpath, from a domain root, and from the local
+filesystem alike.
+
+Two places are outside that rewrite and must be written relative by hand:
+
+- `assets/css/style.css` — font `url()`s are relative to the stylesheet
+  (`../fonts/…`).
+- `assets/js/main.js` — use `link.pathname`, not the raw `href`, when matching
+  internal links.
+
+`npm run check` fails the build on any root-relative `href`/`src`, so this
+cannot regress silently.
+
 ### Adding a page
 
 Most content changes need no new code:

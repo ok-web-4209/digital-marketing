@@ -12,6 +12,8 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { resolveFromPage } from './lib/urls.mjs';
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const errors = [];
@@ -121,32 +123,39 @@ for (const file of htmlFiles) {
     if (!/\swidth="\d+"/.test(attrs) || !/\sheight="\d+"/.test(attrs)) {
       warn(rel, `img without explicit width/height (layout shift risk): ${src}`);
     }
+    if (/^(https?:|data:)/.test(src)) continue;
     if (src.startsWith('/')) {
-      const target = resolve(ROOT, src.slice(1).split('?')[0]);
-      if (!existsSync(target)) fail(rel, `broken image: ${src}`);
-    } else if (!/^(https?:|data:)/.test(src)) {
-      warn(rel, `relative image path (prefer root-relative): ${src}`);
-    }
-  }
-
-  /* --- internal links --- */
-  for (const match of html.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)) {
-    const href = match[1];
-    if (/^(https?:|mailto:|tel:|#)/.test(href)) continue;
-    if (!href.startsWith('/')) {
-      fail(rel, `relative link (prefer root-relative): ${href}`);
+      // Root-relative paths break when the site is served from a subpath.
+      fail(rel, `root-relative image src (must be document-relative): ${src}`);
       continue;
     }
-    const [path] = href.split('#');
-    if (path === '/') continue;
-    const target = resolve(ROOT, path.slice(1));
-    if (!existsSync(target)) fail(rel, `broken link: ${href}`);
+    const target = resolve(ROOT, resolveFromPage(rel, src.split('?')[0]));
+    if (!existsSync(target)) fail(rel, `broken image: ${src}`);
   }
 
-  /* --- stylesheet and script references --- */
-  for (const match of html.matchAll(/(?:href|src)="(\/assets\/[^"]+)"/g)) {
-    const target = resolve(ROOT, match[1].slice(1));
-    if (!existsSync(target)) fail(rel, `missing asset: ${match[1]}`);
+  /* --- internal links and asset references --- */
+  for (const match of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+    const value = match[1];
+    if (/^(https?:|mailto:|tel:|data:|#)/.test(value)) continue;
+    if (value.startsWith('//')) continue;
+    if (value.startsWith('/')) {
+      fail(rel, `root-relative URL (must be document-relative): ${value}`);
+      continue;
+    }
+    const [path] = value.split('#');
+    if (!path) continue;
+    const target = resolve(ROOT, resolveFromPage(rel, path));
+    if (!existsSync(target)) fail(rel, `broken link: ${value}`);
+  }
+
+  /* --- meta refresh target must also resolve --- */
+  const refresh = html.match(/http-equiv="refresh" content="\d+;\s*url=([^"]+)"/);
+  if (refresh) {
+    const hop = refresh[1];
+    if (hop.startsWith('/')) fail(rel, `root-relative redirect target: ${hop}`);
+    else if (!existsSync(resolve(ROOT, resolveFromPage(rel, hop)))) {
+      fail(rel, `redirect points at a missing page: ${hop}`);
+    }
   }
 
   /* --- forms --- */

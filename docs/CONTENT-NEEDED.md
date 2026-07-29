@@ -97,7 +97,27 @@ Confirm both are still active and that the Formspree account receives the new
 field names (`business_name`, `primary_service`, `service_area`, `challenge`,
 `website`) before going live.
 
-### 11. Submit the new sitemap
+### 11. Decide the canonical domain
+
+The site is currently published at
+`https://ok-web-4209.github.io/digital-marketing/`, but every canonical tag,
+Open Graph URL and sitemap entry points at `https://designrankstudio.com`.
+There is no `CNAME` file in the repository, so the custom domain is not
+attached to GitHub Pages. The previous version of the site had the same
+mismatch, so this is carried over rather than introduced.
+
+Pick one:
+
+- **Use the custom domain** (recommended if you own it): add it under
+  *Settings → Pages → Custom domain*. GitHub writes a `CNAME` file and the
+  existing canonicals become correct with no code change.
+- **Stay on github.io**: change `origin` in `src/data/site.mjs` to
+  `https://ok-web-4209.github.io/digital-marketing` and rebuild.
+
+Leaving it as it is means search engines are told the content lives at a
+domain that does not serve it, which will hold back indexing.
+
+### 12. Submit the new sitemap
 The redesign changed most URLs. After deploying, submit
 `https://designrankstudio.com/sitemap.xml` in Google Search Console and check
 the coverage report for the retired URLs listed in the `redirects` map in
