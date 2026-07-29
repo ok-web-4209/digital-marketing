@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Industries we build for</title><desc id="d">A grid of industry tiles for tree services, concrete, fencing, landscaping, roofing and pool services around a local search map.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="700" rx="20" fill="#f7f5f1"/>
+<circle cx="500" cy="350" r="220" fill="#eaf1f8" opacity="0.7"/>
+<g transform="translate(60 60)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34V22"/><path d="M18 22 6 22 18 4 30 22 24 22"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Tree services</text>
+</g>
+<g transform="translate(400 40)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="28" height="18" rx="2"/><path d="M4 20h28M13 12v18M23 12v18"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Concrete</text>
+</g>
+<g transform="translate(740 70)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30V12l5-5 5 5v18M20 30V12l5-5 5 5v18M4 16h28M4 24h28"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Fencing</text>
+</g>
+<g transform="translate(60 300)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 32v-12"/><path d="M18 20c-7 0-11-5-11-10 6 0 11 4 11 10zM18 20c7 0 11-5 11-10-6 0-11 4-11 10z"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Landscaping</text>
+</g>
+<g transform="translate(740 310)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 26c4-6 8-6 12 0s8 6 12 0M4 16c4-6 8-6 12 0s8 6 12 0"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Pool services</text>
+</g>
+<g transform="translate(60 540)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 18 6l14 14M8 20v10h20V20"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Roofing</text>
+</g>
+<g transform="translate(400 550)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="26" height="24" rx="3"/><path d="M5 14h26M11 22h14"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Garage doors</text>
+</g>
+<g transform="translate(740 540)" filter="url(#soft)">
+  <rect width="200" height="120" rx="16" fill="#ffffff" stroke="#dde3ec"/>
+  <g transform="translate(24 24)" stroke="#0b1f3a" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4l14 8v18H4V12z"/><path d="M14 30v-9h8v9"/></g>
+  <text x="24" y="96" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0b1f3a">Real estate</text>
+</g>
+<g filter="url(#soft)" transform="translate(340 250)">
+  <rect width="320" height="200" rx="20" fill="#0b1f3a"/>
+  <text x="32" y="58" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="800" fill="#ffffff">Local search</text>
+  <text x="32" y="86" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#a9bed4">The businesses at the top</text>
+  <text x="32" y="108" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#a9bed4">get the call.</text>
+  <g transform="translate(32 130)">
+    <g transform="translate(0 0)"><circle cx="8" cy="0" r="8" fill="#b08948"/><text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#ffffff">Your business</text></g><g transform="translate(0 22)"><circle cx="8" cy="0" r="8" fill="rgba(255,255,255,0.16)"/><text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#8ba3bd">Competitor</text></g><g transform="translate(0 44)"><circle cx="8" cy="0" r="8" fill="rgba(255,255,255,0.16)"/><text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#8ba3bd">Competitor</text></g>
+  </g>
+</g>
+</svg>

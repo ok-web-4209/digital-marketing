@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Website redesign comparison</title><desc id="d">A cluttered outdated contractor website beside a clean modern redesign with a visible quote button.</desc>
+<defs><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="750" rx="20" fill="#f7f5f1"/>
+<circle cx="500" cy="375" r="250" fill="#eaf1f8" opacity="0.6"/>
+<g transform="translate(70 180)">
+  <rect x="0" y="-40" width="92" height="28" rx="14" fill="#e2ddd4"/>
+  <text x="46" y="-21" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#8a8377">Before</text>
+  <g filter="url(#soft)"><rect width="330" height="230" rx="10" fill="#f0eeea"/>
+  <rect x="18" y="16" width="96" height="14" rx="3" fill="#b9b3a8"/>
+  <rect x="200" y="20" width="44" height="8" rx="3" fill="#c9c3b8"/><rect x="252" y="20" width="44" height="8" rx="3" fill="#c9c3b8"/>
+  <rect x="18" y="44" width="294" height="72" rx="3" fill="#ddd7cc"/>
+  <rect x="32" y="66" width="180" height="12" rx="3" fill="#a8a196"/><rect x="32" y="88" width="220" height="8" rx="3" fill="#b9b3a8"/>
+  <rect x="18" y="130" width="90" height="52" rx="3" fill="#e6e1d8"/><rect x="28" y="144" width="52" height="7" rx="3" fill="#bbb5aa"/><rect x="28" y="158" width="68" height="6" rx="3" fill="#ccc6bb"/><rect x="118" y="130" width="90" height="52" rx="3" fill="#e6e1d8"/><rect x="128" y="144" width="52" height="7" rx="3" fill="#bbb5aa"/><rect x="128" y="158" width="68" height="6" rx="3" fill="#ccc6bb"/><rect x="218" y="130" width="90" height="52" rx="3" fill="#e6e1d8"/><rect x="228" y="144" width="52" height="7" rx="3" fill="#bbb5aa"/><rect x="228" y="158" width="68" height="6" rx="3" fill="#ccc6bb"/>
+  <rect x="18" y="196" width="290" height="7" rx="3" fill="#d5cfc4"/>
+  <rect x="18" y="210" width="250" height="7" rx="3" fill="#d5cfc4"/></g>
+</g>
+<g transform="translate(600 340)">
+  <rect x="0" y="-40" width="92" height="28" rx="14" fill="#e2f0e9"/>
+  <text x="46" y="-21" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#1f7a52">After</text>
+  <g filter="url(#soft)"><rect width="330" height="230" rx="10" fill="#ffffff"/>
+  <rect x="18" y="16" width="82" height="11" rx="6" fill="#0b1f3a"/>
+  <rect x="232" y="10" width="82" height="24" rx="12" fill="#b08948"/><text x="273" y="25.6" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#ffffff">Call now</text>
+  <rect x="18" y="44" width="294" height="96" rx="10" fill="#0b1f3a"/>
+  <rect x="36" y="66" width="176" height="13" rx="7" fill="#ffffff"/>
+  <rect x="36" y="88" width="132" height="8" rx="4" fill="#9fb6cf"/>
+  <rect x="36" y="106" width="112" height="24" rx="12" fill="#b08948"/><text x="92" y="121.24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#0b1f3a">Get a free quote</text>
+  <rect x="18" y="152" width="90" height="62" rx="9" fill="#f7f5f1" stroke="#dde3ec"/>
+    <circle cx="36" cy="170" r="9" fill="#e2f0e9"/>
+    <path d="M31 170 l3.6 3.6 6.4 -7.2" stroke="#1f7a52" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="28" y="188" width="62" height="7" rx="3.5" fill="#23507f"/><rect x="28" y="201" width="72" height="5" rx="2.5" fill="#dbe4ef"/><rect x="118" y="152" width="90" height="62" rx="9" fill="#f7f5f1" stroke="#dde3ec"/>
+    <circle cx="136" cy="170" r="9" fill="#e2f0e9"/>
+    <path d="M131 170 l3.6 3.6 6.4 -7.2" stroke="#1f7a52" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="128" y="188" width="62" height="7" rx="3.5" fill="#23507f"/><rect x="128" y="201" width="72" height="5" rx="2.5" fill="#dbe4ef"/><rect x="218" y="152" width="90" height="62" rx="9" fill="#f7f5f1" stroke="#dde3ec"/>
+    <circle cx="236" cy="170" r="9" fill="#e2f0e9"/>
+    <path d="M231 170 l3.6 3.6 6.4 -7.2" stroke="#1f7a52" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="228" y="188" width="62" height="7" rx="3.5" fill="#23507f"/><rect x="228" y="201" width="72" height="5" rx="2.5" fill="#dbe4ef"/></g>
+</g>
+<g transform="translate(500 300)"><circle r="36" fill="#0b1f3a"/>
+  <path d="M-14 -4 a14 14 0 0 1 24 -9 M12 4 a14 14 0 0 1 -24 9" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M10 -20 v9 h-9 M-10 20 v-9 h9" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

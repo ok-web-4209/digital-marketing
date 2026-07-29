@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+<title id="t">Local SEO results and Google Business Profile</title><desc id="d">A local search results panel with a map, a Google Business Profile card and a keyword ranking table.</desc>
+<defs><linearGradient id="mapWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2f7fc"/><stop offset="1" stop-color="#e6eef7"/></linearGradient><filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0b1f3a" flood-opacity="0.10"/>
+</filter></defs>
+<rect width="1000" height="750" rx="20" fill="#f7f5f1"/>
+<g filter="url(#soft)" transform="translate(56 70)">
+  <rect width="440" height="300" rx="18" fill="#ffffff" stroke="#dde3ec"/>
+  <rect width="440" height="300" rx="18" fill="url(#mapWash)"/>
+  <path d="M0 96 h440 M0 190 h440 M120 0 v300 M290 0 v300" stroke="#dbe4ef" stroke-width="6" opacity="0.8"/>
+  <path d="M0 140 C 120 130 180 210 440 200" stroke="#d9b877" stroke-width="8" fill="none" opacity="0.7"/>
+  <g transform="translate(210 120)">
+    <path d="M0 44 C -26 14 -30 4 -30 -8 a30 30 0 0 1 60 0 c0 12 -4 22 -30 52 Z" fill="#0b1f3a"/>
+    <circle cy="-8" r="11" fill="#ffffff"/>
+  </g>
+  <g transform="translate(86 210)"><path d="M0 26 C -15 8 -18 2 -18 -5 a18 18 0 0 1 36 0 c0 7 -3 13 -18 31 Z" fill="#7d93ae" opacity="0.75"/><circle cy="-5" r="6" fill="#ffffff"/></g><g transform="translate(352 92)"><path d="M0 26 C -15 8 -18 2 -18 -5 a18 18 0 0 1 36 0 c0 7 -3 13 -18 31 Z" fill="#7d93ae" opacity="0.75"/><circle cy="-5" r="6" fill="#ffffff"/></g><g transform="translate(130 250)"><path d="M0 26 C -15 8 -18 2 -18 -5 a18 18 0 0 1 36 0 c0 7 -3 13 -18 31 Z" fill="#7d93ae" opacity="0.75"/><circle cy="-5" r="6" fill="#ffffff"/></g><g transform="translate(380 236)"><path d="M0 26 C -15 8 -18 2 -18 -5 a18 18 0 0 1 36 0 c0 7 -3 13 -18 31 Z" fill="#7d93ae" opacity="0.75"/><circle cy="-5" r="6" fill="#ffffff"/></g>
+</g>
+<g filter="url(#soft)" transform="translate(536 108)">
+  <rect width="416" height="232" rx="18" fill="#ffffff" stroke="#dde3ec"/>
+  <rect x="24" y="24" width="56" height="56" rx="14" fill="#0b1f3a"/>
+  <path d="M40 52 l7 7 14 -16" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="46" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0b1f3a">Ridgeline Tree Care</text>
+  <text x="96" y="68" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#5b6b80">Tree service &#183; Fairview, TX</text>
+  <g transform="translate(24 104)">
+    <path transform="translate(0 0)" d="M10 0 l3 6.4 7 1 -5 5 1.2 7 -6.2-3.4 -6.2 3.4 1.2 -7 -5 -5 7 -1 Z" fill="#b08948"/><path transform="translate(26 0)" d="M10 0 l3 6.4 7 1 -5 5 1.2 7 -6.2-3.4 -6.2 3.4 1.2 -7 -5 -5 7 -1 Z" fill="#b08948"/><path transform="translate(52 0)" d="M10 0 l3 6.4 7 1 -5 5 1.2 7 -6.2-3.4 -6.2 3.4 1.2 -7 -5 -5 7 -1 Z" fill="#b08948"/><path transform="translate(78 0)" d="M10 0 l3 6.4 7 1 -5 5 1.2 7 -6.2-3.4 -6.2 3.4 1.2 -7 -5 -5 7 -1 Z" fill="#b08948"/><path transform="translate(104 0)" d="M10 0 l3 6.4 7 1 -5 5 1.2 7 -6.2-3.4 -6.2 3.4 1.2 -7 -5 -5 7 -1 Z" fill="#b08948"/>
+    <text x="146" y="14" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#16345c">4.9 &#183; 128 reviews</text>
+  </g>
+  <g transform="translate(24 150)">
+    <circle cx="8" cy="0" r="8" fill="#e2f0e9"/>
+    <path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#16345c">Verified profile</text></g><g transform="translate(24 176)">
+    <circle cx="8" cy="0" r="8" fill="#e2f0e9"/>
+    <path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#16345c">Service areas set</text></g><g transform="translate(24 202)">
+    <circle cx="8" cy="0" r="8" fill="#e2f0e9"/>
+    <path d="M4.4 0 l2.6 2.6 4.6 -5.2" stroke="#1f7a52" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="26" y="4" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#16345c">Photos updated weekly</text></g>
+</g>
+<g filter="url(#soft)" transform="translate(280 420)">
+  <rect width="440" height="264" rx="18" fill="#ffffff" stroke="#dde3ec"/>
+  <text x="24" y="44" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#0b1f3a">Keyword rankings</text>
+  <text x="416" y="44" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5b6b80">Last 90 days</text>
+  <rect x="24" y="64" width="392" height="46" rx="12" fill="#f7f5f1"/>
+  <text x="42" y="93" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#16345c">tree removal near me</text>
+  <rect x="306" y="76" width="46" height="22" rx="11" fill="#e2f0e9"/>
+  <text x="329" y="91" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#1f7a52">&#8593;6</text>
+  <circle cx="386" cy="87" r="15" fill="#0b1f3a"/>
+  <text x="386" y="92" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff">2</text>
+  <rect x="24" y="122" width="392" height="46" rx="12" fill="#f7f5f1"/>
+  <text x="42" y="151" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#16345c">emergency tree service</text>
+  <rect x="306" y="134" width="46" height="22" rx="11" fill="#e2f0e9"/>
+  <text x="329" y="149" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#1f7a52">&#8593;4</text>
+  <circle cx="386" cy="145" r="15" fill="#0b1f3a"/>
+  <text x="386" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff">1</text>
+  <rect x="24" y="180" width="392" height="46" rx="12" fill="#f7f5f1"/>
+  <text x="42" y="209" text-anchor="start" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#16345c">stump grinding Fairview</text>
+  <rect x="306" y="192" width="46" height="22" rx="11" fill="#e2f0e9"/>
+  <text x="329" y="207" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#1f7a52">&#8593;9</text>
+  <circle cx="386" cy="203" r="15" fill="#0b1f3a"/>
+  <text x="386" y="208" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff">4</text>
+</g>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "name": "design-rank-studio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Design Rank Studio — websites and local SEO for US service businesses. Static site generated from reusable components with a zero-dependency Node build.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node src/build.mjs",
+    "check": "node src/check.mjs",
+    "lint": "node --check assets/js/main.js && node src/check.mjs",
+    "test": "npm run build && npm run check",
+    "serve": "node src/serve.mjs"
+  }
+}
