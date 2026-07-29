@@ -14,6 +14,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildArt } from './art.mjs';
+import { relativizeUrls, prefixFor } from './lib/urls.mjs';
 import { site } from './data/site.mjs';
 import { services } from './data/services.mjs';
 import { industries } from './data/industries.mjs';
@@ -99,15 +100,20 @@ const redirects = {
   'blog/automation-ideas-for-service-businesses.html': '/services.html',
 };
 
-function redirectStub(target) {
+function redirectStub(from, target) {
   const url = site.origin + target;
-  return `<!DOCTYPE html>
+  const prefix = prefixFor(from);
+  // The refresh target is a plain attribute value, so it is rewritten here
+  // rather than by relativizeUrls (which only handles href/src).
+  const hop = prefix + target.slice(1);
+  return relativizeUrls(
+    `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Page moved | ${site.name}</title>
-<meta http-equiv="refresh" content="0; url=${target}" />
+<meta http-equiv="refresh" content="0; url=${hop}" />
 <link rel="canonical" href="${url}" />
 <meta name="robots" content="noindex, follow" />
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
@@ -125,7 +131,9 @@ a{color:#0b1f3a;font-weight:700}
 </main>
 </body>
 </html>
-`;
+`,
+    from,
+  );
 }
 
 /* ------------------------------------------------------------------ output */
@@ -174,7 +182,7 @@ function build() {
   }
 
   for (const [from, to] of Object.entries(redirects)) {
-    writeFile(from, redirectStub(to));
+    writeFile(from, redirectStub(from, to));
   }
 
   writeFile('sitemap.xml', buildSitemap());

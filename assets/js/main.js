@@ -335,7 +335,10 @@
     if (!link) return;
 
     var href = link.getAttribute('href') || '';
-    var params = { link_text: textOf(link), page_path: pagePath(), target_url: href };
+    // Internal links are document-relative so the site can be served from a
+    // subpath; `link.pathname` resolves them, whatever the base path is.
+    var path = link.pathname || '';
+    var params = { link_text: textOf(link), page_path: pagePath(), target_url: link.href || href };
 
     if (href.indexOf('wa.me') !== -1) {
       track('contact_whatsapp', params);
@@ -343,16 +346,16 @@
       track('contact_phone', params);
     } else if (href.indexOf('mailto:') === 0) {
       track('contact_email', params);
-    } else if (href.indexOf('/website-review') === 0) {
-      track('cta_website_review', params);
-    } else if (href.indexOf('/contact') === 0) {
-      track('cta_contact', params);
-    } else if (href.indexOf('/services/') === 0) {
-      track('service_click', params);
-    } else if (href.indexOf('/industries/') === 0) {
-      track('industry_click', params);
     } else if (link.hostname && link.hostname !== window.location.hostname) {
       track('outbound_click', params);
+    } else if (path.indexOf('/website-review') !== -1) {
+      track('cta_website_review', params);
+    } else if (path.indexOf('/contact') !== -1) {
+      track('cta_contact', params);
+    } else if (path.indexOf('/services/') !== -1) {
+      track('service_click', params);
+    } else if (path.indexOf('/industries/') !== -1) {
+      track('industry_click', params);
     }
   });
 })();

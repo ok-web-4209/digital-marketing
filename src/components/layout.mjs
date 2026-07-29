@@ -1,4 +1,5 @@
 import { html, raw, jsonLd, oneLine } from '../lib/html.mjs';
+import { relativizeUrls } from '../lib/urls.mjs';
 import { site, nav, cta } from '../data/site.mjs';
 import { services } from '../data/services.mjs';
 import { icon, logo } from './icons.mjs';
@@ -282,7 +283,10 @@ export function page({
   const currentPath = path === 'index.html' ? '/' : `/${path}`;
   const allSchema = [organizationSchema(), breadcrumbSchema(trail, `/${path}`), ...schema].filter(Boolean);
 
-  return `<!DOCTYPE html>
+  // Components author internal links as root-relative; relativizeUrls rewrites
+  // them so the site works from a subpath as well as from a domain root.
+  return relativizeUrls(
+    `<!DOCTYPE html>
 <html lang="${site.lang}">
 <head>
 <meta charset="utf-8" />
@@ -334,5 +338,7 @@ ${mobileCtaBar()}
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
-`;
+`,
+    path,
+  );
 }
