@@ -300,10 +300,9 @@ Used on:
 
 These stay as illustrations on purpose:
 
-- `hero-composition.svg`, `before-after.svg`, `review-findings.svg`,
-  `industries-overview.svg` and the five `service-*.svg` files — they explain
-  website structure, rankings, analytics and conversion, which a photograph
-  cannot do.
+- `hero-composition.svg`, `before-after.svg`, `review-findings.svg` and
+  `industries-overview.svg` — they explain website structure, rankings,
+  analytics and conversion, which a photograph cannot do.
 - `about-remote.svg` — the About page. A stock portrait must not stand in for
   the founder. See `docs/CONTENT-NEEDED.md` item 4.
 - Portfolio thumbnails, the logo, the favicon, the OG preview and every

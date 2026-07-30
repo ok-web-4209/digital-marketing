@@ -30,7 +30,9 @@ const SIZES = {
  * per page that loads eagerly at high priority.
  */
 export function pageHero({ eyebrow, title, serif = null, lead, actions = [], art = null, artAlt = '', aside = null }) {
-  const media = art && (typeof art === 'string' ? { src: art, alt: artAlt, width: 1000, height: 720 } : art);
+  const media = art && (typeof art === 'string'
+    ? { src: art, alt: artAlt, width: 1200, height: 900, isPhoto: /^https?:\/\//.test(art) }
+    : art);
   return html`<section class="page-hero">
     <div class="page-hero__pattern" aria-hidden="true"></div>
     <div class="container page-hero__inner${art || aside ? ' page-hero__inner--split' : ''}">
@@ -613,6 +615,7 @@ export function relatedServices(currentSlug) {
           linkCard({
             href: service.href,
             iconName: service.icon,
+            image: service.cardImage,
             title: service.name,
             body: service.tagline,
           }),
