@@ -81,11 +81,7 @@ function entry(industry) {
 
 | Field | Value |
 | --- | --- |
-| Status | **${found
-    ? `present — \`${found.replace(`${STOCK_DIR}/`, '')}\``
-    : industry.remoteImage
-      ? 'REMOTE CDN — the linked photograph is live; a local file remains optional'
-      : 'MISSING — the SVG illustration is being used instead'}** |
+| Status | **${found ? `present — \`${found.replace(`${STOCK_DIR}/`, '')}\`` : 'MISSING — the SVG illustration is being used instead'}** |
 | Source page | <${industry.stockSourceUrl}> |
 | Required file | \`assets/images/stock/${file}\` (or the same name as ${BASE_FORMATS.slice(1).join('/')}) |
 | Prepare at | ${PHOTO_WIDTH} × ${PHOTO_HEIGHT} px (14:9), WebP quality 78–82, under ~300 KB |
@@ -205,9 +201,10 @@ ${withPhotos.map((industry) => entry(industry)).join('\n')}
 
 These stay as illustrations on purpose:
 
-- \`hero-composition.svg\`, \`before-after.svg\`, \`review-findings.svg\` and
-  \`industries-overview.svg\` — they explain website structure, rankings,
-  analytics and conversion, which a photograph cannot do.
+- \`hero-composition.svg\`, \`before-after.svg\`, \`review-findings.svg\`,
+  \`industries-overview.svg\` and the five \`service-*.svg\` files — they explain
+  website structure, rankings, analytics and conversion, which a photograph
+  cannot do.
 - \`about-remote.svg\` — the About page. A stock portrait must not stand in for
   the founder. See \`docs/CONTENT-NEEDED.md\` item 4.
 - Portfolio thumbnails, the logo, the favicon, the OG preview and every

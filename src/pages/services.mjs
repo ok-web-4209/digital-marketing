@@ -53,8 +53,9 @@ export function servicesHubPage() {
           { label: cta.review.label, href: cta.review.href, variant: 'primary' },
           { label: 'See packages and pricing', href: '/pricing.html', variant: 'secondary' },
         ],
-        art: services[0].art,
-        artAlt: services[0].artAlt,
+        art: '/assets/images/art/service-website-design.svg',
+        artAlt:
+          'Mockup of a service-business website on desktop and mobile with a call button, quote form and service cards',
       })}
 
       ${section({
@@ -70,7 +71,6 @@ export function servicesHubPage() {
               linkCard({
                 href: service.href,
                 iconName: service.icon,
-                image: service.cardImage,
                 title: service.name,
                 body: service.tagline,
                 cta: 'See what is included',
@@ -94,7 +94,7 @@ export function servicesHubPage() {
                   <p class="service-row__outcome"><strong>What you get:</strong> ${service.outcome}</p>
                   ${button({ label: `Explore ${service.shortName}`, href: service.href, variant: 'primary' })}
                 </div>
-                <div>${figure({ src: service.art, alt: service.artAlt, width: 1200, height: 900, imgClassName: 'service-photo' })}</div>
+                <div>${figure({ src: service.art, alt: service.artAlt, width: 1000, height: 750 })}</div>
               </div>
             </div>
           </section>`,

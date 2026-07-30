@@ -20,14 +20,6 @@
  * its illustration instead of emitting a broken image.
  */
 
-const pexelsPhoto = (id, width) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=${width}&h=${Math.round(width * 9 / 14)}`;
-
-const remotePhotos = (id) => ({
-  remoteImage: pexelsPhoto(id, 1400),
-  remoteImageSmall: pexelsPhoto(id, 900),
-});
-
 export const industries = [
   {
     slug: 'tree-service-websites',
@@ -41,7 +33,6 @@ export const industries = [
       'Professional arborist trimming tree branches from an elevated work platform',
     stockSourceUrl:
       'https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk',
-    ...remotePhotos(3846559),
     short: 'Removals, trimming and storm work — including the emergency calls that will not wait for a callback.',
     heading: 'Websites and Local SEO for Tree Service Companies',
     intro:
@@ -75,7 +66,6 @@ export const industries = [
       'Concrete contractors pouring a residential driveway in Fort Worth, Texas',
     stockSourceUrl:
       'https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/',
-    ...remotePhotos(33405139),
     short: 'Driveways, patios, slabs and decorative work, where photographs of finished jobs do most of the selling.',
     heading: 'Websites and Local SEO for Concrete Contractors',
     intro:
@@ -109,7 +99,6 @@ export const industries = [
       'Construction team installing a wooden residential fence',
     stockSourceUrl:
       'https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw',
-    ...remotePhotos(5691622),
     short: 'Wood, vinyl, aluminium and chain link — where most enquiries start with "what would this cost per foot?"',
     heading: 'Websites and Local SEO for Fence Companies',
     intro:
@@ -143,7 +132,6 @@ export const industries = [
       'Professional landscaping worker mowing a maintained green lawn',
     stockSourceUrl:
       'https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/',
-    ...remotePhotos(9029162),
     short: 'Design-build projects and recurring maintenance, which need to be sold in completely different ways.',
     heading: 'Websites and Local SEO for Landscaping Companies',
     intro:
@@ -177,7 +165,6 @@ export const industries = [
       'Pool-maintenance professional cleaning an outdoor swimming pool',
     stockSourceUrl:
       'https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/',
-    ...remotePhotos(21327976),
     short: 'Recurring cleaning routes, equipment repair and renovation work, each on a different sales cycle.',
     heading: 'Websites and Local SEO for Pool Service Companies',
     intro:
@@ -211,7 +198,6 @@ export const industries = [
       'Modern residential house with professionally installed garage doors',
     stockSourceUrl:
       'https://unsplash.com/photos/modern-garage-doors-on-a-white-house-3qRx6B4cT6g',
-    ...remotePhotos(4489734),
     short: 'Urgent repairs and planned replacements, where response speed usually decides who gets the job.',
     heading: 'Websites and Local SEO for Garage Door Companies',
     intro:
@@ -245,7 +231,6 @@ export const industries = [
       'Professional roofing contractor installing shingles on a residential roof',
     stockSourceUrl:
       'https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/',
-    ...remotePhotos(33404248),
     short: 'Replacements, repairs, storm response and insurance claims — the highest-competition local market of all.',
     heading: 'Websites and Local SEO for Roofing Companies',
     intro:
@@ -279,7 +264,6 @@ export const industries = [
       'Service professional pressure washing the exterior siding of a house',
     stockSourceUrl:
       'https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/',
-    ...remotePhotos(5652626),
     short: 'Pressure washing, decks, outdoor lighting, gutters and the seasonal work that fills the calendar between them.',
     heading: 'Websites and Local SEO for Outdoor Service Companies',
     intro:
@@ -313,7 +297,6 @@ export const industries = [
       'Real-estate agent showing a bright modern home to a prospective buyer',
     stockSourceUrl:
       'https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/',
-    ...remotePhotos(8292801),
     short: 'Agents, teams and brokerages that need to be found for neighbourhood and seller searches.',
     heading: 'Websites and Local SEO for Real Estate Firms',
     intro:
@@ -347,7 +330,6 @@ export const industries = [
       'Attorney consulting with clients and reviewing documents in a professional office',
     stockSourceUrl:
       'https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/',
-    ...remotePhotos(8112166),
     short: 'Solo attorneys and small firms competing against far larger advertising budgets.',
     heading: 'Websites and Local SEO for Solo Attorneys and Small Firms',
     intro:
