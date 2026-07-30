@@ -222,6 +222,7 @@ export function homeServicesPage() {
               linkCard({
                 href: service.href,
                 iconName: service.icon,
+                image: service.cardImage,
                 title: service.name,
                 body: service.tagline,
               }),
@@ -336,6 +337,7 @@ export function industryPage(industry) {
               linkCard({
                 href: service.href,
                 iconName: service.icon,
+                image: service.cardImage,
                 title: service.name,
                 body: service.tagline,
               }),

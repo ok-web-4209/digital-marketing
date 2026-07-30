@@ -14,9 +14,10 @@ export const services = [
     shortName: 'Website Design',
     promoted: true,
     icon: 'browser',
-    art: '/assets/images/art/service-website-design.svg',
+    art: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=900&q=85',
+    cardImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=96&h=96&q=82',
     artAlt:
-      'Mockup of a tree-service website homepage with a call button, quote form and service cards, shown on desktop and mobile',
+      'Laptop displaying website analytics and performance dashboards on a desk',
     tagline: 'A website built to turn visitors into quote requests',
     problem:
       'Most service-business websites are built like a brochure. They describe the company, list a phone number somewhere, and leave the visitor to work out the rest. Homeowners comparing three contractors on a phone will pick whichever one makes it easiest to get a price.',
@@ -56,9 +57,10 @@ export const services = [
     shortName: 'Redesign',
     promoted: true,
     icon: 'refresh',
-    art: '/assets/images/art/service-redesign.svg',
+    art: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&h=900&q=85',
+    cardImage: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=96&h=96&q=82',
     artAlt:
-      'Side-by-side comparison of a cluttered outdated contractor website and a clean modern redesign with a visible quote button',
+      'Designer refining a modern website interface and user experience layout',
     tagline: 'Keep the business you have built. Replace the website holding it back.',
     problem:
       'Your business has grown but the website has not. It was built years ago, it is awkward on a phone, and it no longer reflects the quality of your work. Rebuilding feels risky because the site still brings in some calls.',
@@ -96,9 +98,10 @@ export const services = [
     shortName: 'Local SEO',
     promoted: true,
     icon: 'pin',
-    art: '/assets/images/art/service-local-seo.svg',
+    art: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?auto=format&fit=crop&w=1200&h=900&q=85',
+    cardImage: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?auto=format&fit=crop&w=96&h=96&q=82',
     artAlt:
-      'Local search results panel showing a map, a Google Business Profile card and a keyword ranking table for a service business',
+      'Marketing team reviewing search visibility and digital campaign results',
     tagline: 'Be the business people find when they search in your area',
     problem:
       'When someone in your area searches for the work you do, the businesses at the top get the call. If your site has no service-area pages, thin service content or a neglected Google Business Profile, you are invisible for the searches that matter most.',
@@ -137,9 +140,10 @@ export const services = [
     shortName: 'Landing Pages',
     promoted: true,
     icon: 'bolt',
-    art: '/assets/images/art/service-landing-pages.svg',
+    art: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&h=900&q=85',
+    cardImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=96&h=96&q=82',
     artAlt:
-      'Campaign landing page mockup with a headline, quote form and trust badges, next to a chart showing form submissions',
+      'Analytics dashboard showing campaign performance and conversion data',
     tagline: 'Focused pages for the campaigns and areas you are pushing hardest',
     problem:
       'Sending paid traffic to your homepage wastes it. Someone who clicked an ad for driveway replacement in a specific town should land on a page about exactly that, not on a general overview of everything you offer.',
@@ -175,8 +179,9 @@ export const services = [
     shortName: 'Maintenance',
     promoted: false,
     icon: 'shield',
-    art: '/assets/images/art/service-maintenance.svg',
-    artAlt: 'Website health checklist showing uptime, backup, update and speed status indicators',
+    art: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&h=900&q=85',
+    cardImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=96&h=96&q=82',
+    artAlt: 'Developer maintaining website code on a laptop',
     tagline: 'Optional ongoing care once your site is live',
     problem:
       'A website is not finished at launch. Content goes stale, forms quietly break, and small technical problems accumulate until something visible fails.',
