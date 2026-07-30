@@ -49,16 +49,62 @@ export function checkList(items, { className = '' } = {}) {
   </ul>`;
 }
 
-/** Responsive figure with intrinsic dimensions to avoid layout shift. */
-export function figure({ src, alt, width = 1200, height = 800, className = '', eager = false, caption = null }) {
-  return html`<figure class="figure ${className}">
-    <img
-      src="${src}"
-      alt="${alt}"
+/**
+ * Responsive image with intrinsic dimensions to avoid layout shift.
+ *
+ * `sources` and `srcset` come from `resolveImage()` in src/lib/media.mjs, which
+ * only ever lists files that exist on disk — so a <picture> is emitted when
+ * there is a genuine alternative encoding to offer, and a plain <img>
+ * otherwise. `eager` marks an above-the-fold image; `priority` additionally
+ * requests high fetch priority and belongs to one image per page at most.
+ */
+export function picture({
+  src,
+  alt,
+  width = 1200,
+  height = 800,
+  className = '',
+  sources = [],
+  srcset = null,
+  sizes = null,
+  eager = false,
+  priority = false,
+}) {
+  const loading = eager ? '' : ' loading="lazy"';
+  const fetchPriority = priority ? ' fetchpriority="high"' : '';
+  const img = html`<img
+      ${raw(className ? `class="${className}" ` : '')}src="${src}"
+      ${srcset ? raw(`srcset="${srcset}" `) : ''}${sizes && srcset ? raw(`sizes="${sizes}" `) : ''}alt="${alt}"
       width="${width}"
       height="${height}"
-      ${raw(eager ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"')}
-    />
+      ${raw(`decoding="async"${loading}${fetchPriority}`)}
+    />`;
+
+  if (sources.length === 0) return img;
+
+  // `sizes` only means anything alongside width descriptors, so a source with a
+  // single candidate does not get one.
+  const describesWidths = (value) => /\s\d+w\s*(,|$)/.test(value);
+
+  return html`<picture>
+    ${sources.map(
+      (source) =>
+        html`<source srcset="${source.srcset}"${sizes && describesWidths(source.srcset)
+          ? raw(` sizes="${sizes}"`)
+          : ''} type="${source.type}" />`,
+    )}
+    ${img}
+  </picture>`;
+}
+
+/**
+ * `picture` wrapped in a <figure>. Accepts a resolved media object spread in,
+ * so `figure({ ...industryImage(industry), eager: true })` works directly.
+ * `className` styles the figure, `imgClassName` the image inside it.
+ */
+export function figure({ className = '', imgClassName = '', caption = null, ...image }) {
+  return html`<figure class="figure ${className}">
+    ${picture({ ...image, className: imgClassName })}
     ${caption && html`<figcaption>${caption}</figcaption>`}
   </figure>`;
 }

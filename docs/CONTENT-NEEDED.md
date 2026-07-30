@@ -64,15 +64,24 @@ live sites would be more convincing.
 `art` field in `src/data/projects.mjs`.
 
 ### 8. Photography
-Every section has a visual, but all artwork is custom SVG illustration rather
-than photography. Photographs of real crews, trucks and completed jobs would
-raise the credibility of the industry pages.
+**The site is now wired for photography and waiting on the files.** Every
+industry — homepage cards, the industries hub mosaic and each industry page
+hero — will use a photograph of real service work as soon as the file exists,
+and falls back to its SVG illustration until then.
+
+Ten photographs have been selected, with the source page, exact filename,
+dimensions, alt text and framing note for each one listed in
+[`STOCK-IMAGE-DOWNLOADS.md`](../STOCK-IMAGE-DOWNLOADS.md) in the repository
+root. Download them into `assets/images/stock/` and run `npm run build`.
 
 *Note for future sessions: stock photo hosts (`images.unsplash.com`,
-`images.pexels.com`) are blocked by this environment's egress policy, which is
-why the illustrations were generated rather than downloaded. Any environment
-with access to those hosts can swap them in by replacing the file at the same
-path or repointing the `art` field.*
+`images.pexels.com`) are blocked by this environment's egress policy, so the
+files cannot be fetched here — the download step is manual by necessity, not by
+preference.*
+
+Photographs of the owner's own crews and completed jobs would be better still
+than stock, and can replace the stock files at the same paths with no code
+change.
 
 ## Before launch
 

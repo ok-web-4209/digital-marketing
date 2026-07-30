@@ -5,6 +5,19 @@
  * navigation menu, the footer, the sitemap and the industry page itself are
  * all generated from this list. `featured: true` marks the four most
  * prominent niches on the homepage and hub.
+ *
+ * Artwork comes in two layers:
+ *
+ * - `art` / `artAlt` — the generated SVG illustration, which is the fallback
+ *   illustration and always exists (src/art.mjs writes it on every build).
+ * - `stockImage` / `stockImageAlt` / `stockSourceUrl` — a photograph the owner
+ *   downloads by hand into assets/images/stock/. `stockSourceUrl` records where
+ *   it came from for the licence record in STOCK-IMAGE-DOWNLOADS.md; it is
+ *   never rendered on the site.
+ *
+ * `resolveImage()` in src/lib/media.mjs picks between the two by checking the
+ * filesystem, so an industry whose photograph has not been downloaded yet keeps
+ * its illustration instead of emitting a broken image.
  */
 
 export const industries = [
@@ -15,6 +28,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-tree-service.svg',
     artAlt: 'Illustration of a certified arborist roped into a mature tree with a chipper truck parked below',
+    stockImage: '/assets/images/stock/tree-service-arborist.webp',
+    stockImageAlt:
+      'Professional arborist trimming tree branches from an elevated work platform',
+    stockSourceUrl:
+      'https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk',
     short: 'Removals, trimming and storm work — including the emergency calls that will not wait for a callback.',
     heading: 'Websites and Local SEO for Tree Service Companies',
     intro:
@@ -43,6 +61,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-concrete.svg',
     artAlt: 'Illustration of a freshly poured and finished concrete driveway in front of a suburban house',
+    stockImage: '/assets/images/stock/concrete-driveway-contractors.webp',
+    stockImageAlt:
+      'Concrete contractors pouring a residential driveway in Fort Worth, Texas',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/',
     short: 'Driveways, patios, slabs and decorative work, where photographs of finished jobs do most of the selling.',
     heading: 'Websites and Local SEO for Concrete Contractors',
     intro:
@@ -71,6 +94,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-fence.svg',
     artAlt: 'Illustration of an installer setting a new wooden privacy fence along a suburban property line',
+    stockImage: '/assets/images/stock/fence-installation-team.webp',
+    stockImageAlt:
+      'Construction team installing a wooden residential fence',
+    stockSourceUrl:
+      'https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw',
     short: 'Wood, vinyl, aluminium and chain link — where most enquiries start with "what would this cost per foot?"',
     heading: 'Websites and Local SEO for Fence Companies',
     intro:
@@ -99,6 +127,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-landscaping.svg',
     artAlt: 'Illustration of a landscaped front garden with new planting beds, edging and a stone path',
+    stockImage: '/assets/images/stock/professional-landscaping-service.webp',
+    stockImageAlt:
+      'Professional landscaping worker mowing a maintained green lawn',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/',
     short: 'Design-build projects and recurring maintenance, which need to be sold in completely different ways.',
     heading: 'Websites and Local SEO for Landscaping Companies',
     intro:
@@ -127,6 +160,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-pool.svg',
     artAlt: 'Illustration of a clean residential swimming pool with patio furniture and service equipment nearby',
+    stockImage: '/assets/images/stock/pool-maintenance-professional.webp',
+    stockImageAlt:
+      'Pool-maintenance professional cleaning an outdoor swimming pool',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/',
     short: 'Recurring cleaning routes, equipment repair and renovation work, each on a different sales cycle.',
     heading: 'Websites and Local SEO for Pool Service Companies',
     intro:
@@ -155,6 +193,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-garage-door.svg',
     artAlt: 'Illustration of a technician servicing a residential garage door with a branded service van on the driveway',
+    stockImage: '/assets/images/stock/modern-residential-garage-doors.webp',
+    stockImageAlt:
+      'Modern residential house with professionally installed garage doors',
+    stockSourceUrl:
+      'https://unsplash.com/photos/modern-garage-doors-on-a-white-house-3qRx6B4cT6g',
     short: 'Urgent repairs and planned replacements, where response speed usually decides who gets the job.',
     heading: 'Websites and Local SEO for Garage Door Companies',
     intro:
@@ -183,6 +226,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-roofing.svg',
     artAlt: 'Illustration of roofers installing new architectural shingles on a suburban house roof',
+    stockImage: '/assets/images/stock/residential-roofing-contractor.webp',
+    stockImageAlt:
+      'Professional roofing contractor installing shingles on a residential roof',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/',
     short: 'Replacements, repairs, storm response and insurance claims — the highest-competition local market of all.',
     heading: 'Websites and Local SEO for Roofing Companies',
     intro:
@@ -211,6 +259,11 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-outdoor.svg',
     artAlt: 'Illustration of a contractor pressure washing a suburban driveway and deck',
+    stockImage: '/assets/images/stock/house-pressure-washing-service.webp',
+    stockImageAlt:
+      'Service professional pressure washing the exterior siding of a house',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/',
     short: 'Pressure washing, decks, outdoor lighting, gutters and the seasonal work that fills the calendar between them.',
     heading: 'Websites and Local SEO for Outdoor Service Companies',
     intro:
@@ -239,6 +292,11 @@ export const industries = [
     homeService: false,
     art: '/assets/images/art/industry-real-estate.svg',
     artAlt: 'Illustration of a suburban home with a for-sale sign and an agent greeting a couple at the door',
+    stockImage: '/assets/images/stock/real-estate-agent-client-viewing.webp',
+    stockImageAlt:
+      'Real-estate agent showing a bright modern home to a prospective buyer',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/',
     short: 'Agents, teams and brokerages that need to be found for neighbourhood and seller searches.',
     heading: 'Websites and Local SEO for Real Estate Firms',
     intro:
@@ -267,6 +325,11 @@ export const industries = [
     homeService: false,
     art: '/assets/images/art/industry-legal.svg',
     artAlt: 'Illustration of a law office desk with a scales-of-justice motif and a consultation booking card',
+    stockImage: '/assets/images/stock/lawyer-client-consultation.webp',
+    stockImageAlt:
+      'Attorney consulting with clients and reviewing documents in a professional office',
+    stockSourceUrl:
+      'https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/',
     short: 'Solo attorneys and small firms competing against far larger advertising budgets.',
     heading: 'Websites and Local SEO for Solo Attorneys and Small Firms',
     intro:

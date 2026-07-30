@@ -84,6 +84,40 @@ independent, and consistent across the site. To use a photograph instead, drop
 the file into `assets/images/` and point the relevant `art` field in
 `src/data/` at it. Nothing else has to change.
 
+Illustrations that explain a *concept* — website structure, rankings, analytics,
+conversion flows, the before/after comparison, the review findings — stay as
+SVG. A photograph cannot show a page structure.
+
+### Photography
+
+Industry imagery is photographic. The files themselves are **not** in this
+repository and are not downloaded by the build: the source pages are on Unsplash
+and Pexels, which this environment cannot reach, so the owner downloads them by
+hand into `assets/images/stock/`.
+
+Nothing breaks while they are missing. `resolveImage()` in `src/lib/media.mjs`
+checks the filesystem at build time and picks:
+
+1. the photograph, if the `.webp` is there — plus an `.avif` sibling and a
+   `-900.webp` rendition if those are there too, offered through `<picture>`
+   and `srcset`;
+2. otherwise the generated SVG illustration.
+
+So a half-filled photo library renders as a mix of photographs and
+illustrations, and an empty one renders exactly as the site did before. There is
+never a broken `<img>`.
+
+Each industry in `src/data/industries.mjs` carries `stockImage`,
+`stockImageAlt` and `stockSourceUrl` alongside its `art`/`artAlt` illustration
+fallback. `npm run build` regenerates
+[`STOCK-IMAGE-DOWNLOADS.md`](STOCK-IMAGE-DOWNLOADS.md) in the repository root
+with the required filenames, sizes, alt text, usage and current present/missing
+status — that file is build output, so edit the data, not the Markdown.
+
+`npm run check` fails the build on a broken `srcset` candidate and on any
+`unsplash.com`/`pexels.com` URL used as an image source, so a stock webpage URL
+cannot end up in the markup.
+
 ## Deployment
 
 The build writes plain `.html` files to the repository root, matching the
