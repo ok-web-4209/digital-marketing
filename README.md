@@ -10,10 +10,11 @@ serve them directly.
 ## Commands
 
 ```bash
-npm run build    # generate all pages, artwork, sitemap.xml and robots.txt
-npm run check    # validate links, images, SEO metadata, headings and forms
-npm run serve    # preview at http://localhost:4173
-npm test         # build then check
+npm run build         # generate all pages, artwork, sitemap.xml and robots.txt
+npm run check         # validate links, images, SEO metadata, headings and forms
+npm run serve         # preview at http://localhost:4173
+npm test              # build then check
+npm run fetch-photos  # download the industry photographs (needs internet)
 ```
 
 There are no dependencies to install — `npm install` is not required. Node 18+.
@@ -91,9 +92,13 @@ SVG. A photograph cannot show a page structure.
 ### Photography
 
 Industry imagery is photographic. The files themselves are **not** in this
-repository and are not downloaded by the build: the source pages are on Unsplash
-and Pexels, which this environment cannot reach, so the owner downloads them by
-hand into `assets/images/stock/`.
+repository and are never downloaded by the build — the build stays offline and
+must not depend on a third party being reachable. To fetch them, run
+`npm run fetch-photos` from a machine with internet access. It reads each
+source page's own `og:image`, saves it into `assets/images/stock/` under the
+filename the data expects, and lists anything it could not get so you can save
+those by hand. Photographs already present are left alone unless you pass
+`--force`.
 
 Nothing breaks while they are missing. `resolveImage()` in `src/lib/media.mjs`
 checks the filesystem at build time and picks:

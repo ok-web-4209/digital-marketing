@@ -35,6 +35,16 @@ export const PHOTO_HEIGHT = 900;
  */
 export const VARIANT_WIDTHS = [900];
 
+/**
+ * Accepted formats for the base file, best first.
+ *
+ * The data declares `.webp` because that is what the site should ship, but a
+ * JPEG or PNG saved straight out of the download is accepted at the same name.
+ * That way the photograph appears the moment the file is dropped in, and
+ * converting to WebP stays an optimisation rather than a precondition.
+ */
+export const BASE_FORMATS = ['.webp', '.jpg', '.jpeg', '.png'];
+
 /** Does a site-root path such as "/assets/images/stock/x.webp" exist on disk? */
 export function assetExists(path) {
   if (typeof path !== 'string' || !path.startsWith('/')) return false;
@@ -44,23 +54,23 @@ export function assetExists(path) {
 const withExtension = (path, extension) => path.replace(/\.[a-z0-9]+$/i, extension);
 const withWidth = (path, width) => path.replace(/(\.[a-z0-9]+)$/i, `-${width}$1`);
 
-/**
- * Every candidate for one encoding of a photograph, widest last, as a srcset
- * string — or null when the base file for that encoding is not present.
- */
-function srcsetFor(basePath, extension, width) {
-  const base = withExtension(basePath, extension);
-  if (!assetExists(base)) return null;
+/** The base file actually on disk for a declared photo path, in any accepted format. */
+export function baseFile(photo) {
+  if (!photo) return null;
+  return BASE_FORMATS.map((extension) => withExtension(photo, extension)).find(assetExists) ?? null;
+}
 
+/**
+ * Width-descriptor srcset for one encoding, widest last — or null when no
+ * smaller rendition exists, in which case a plain `src` says it all.
+ */
+function srcsetFor(base, width) {
   const smaller = VARIANT_WIDTHS.filter((candidate) => candidate < width)
     .map((candidate) => ({ url: withWidth(base, candidate), width: candidate }))
     .filter((entry) => assetExists(entry.url));
 
-  if (smaller.length === 0) return { src: base, srcset: null };
-  return {
-    src: base,
-    srcset: [...smaller, { url: base, width }].map((entry) => `${entry.url} ${entry.width}w`).join(', '),
-  };
+  if (smaller.length === 0) return null;
+  return [...smaller, { url: base, width }].map((entry) => `${entry.url} ${entry.width}w`).join(', ');
 }
 
 /**
@@ -86,9 +96,9 @@ export function resolveImage({
   illustrationHeight = 560,
   sizes = null,
 }) {
-  const webp = photo ? srcsetFor(photo, '.webp', photoWidth) : null;
+  const base = baseFile(photo);
 
-  if (!webp) {
+  if (!base) {
     return {
       isPhoto: false,
       src: illustration,
@@ -101,17 +111,19 @@ export function resolveImage({
     };
   }
 
-  const avif = srcsetFor(photo, '.avif', photoWidth);
+  const avif = withExtension(photo, '.avif');
+  const hasAvif = assetExists(avif);
   return {
     isPhoto: true,
-    src: webp.src,
+    src: base,
     alt: photoAlt,
     width: photoWidth,
     height: photoHeight,
-    srcset: webp.srcset,
-    // Only AVIF needs a <source>; the <img> already carries the WebP candidates.
-    sources: avif ? [{ type: 'image/avif', srcset: avif.srcset ?? avif.src }] : [],
-    sizes: webp.srcset || avif?.srcset ? sizes : null,
+    srcset: srcsetFor(base, photoWidth),
+    // Only AVIF needs a <source>; the <img> already carries the base candidates.
+    sources: hasAvif ? [{ type: 'image/avif', srcset: srcsetFor(avif, photoWidth) ?? avif }] : [],
+    // `picture()` drops this wherever there are no width descriptors to size.
+    sizes,
   };
 }
 
@@ -126,7 +138,7 @@ export function industryImage(industry, { sizes = null } = {}) {
   });
 }
 
-/** True when the industry's photograph has been downloaded. */
+/** True when the industry's photograph has been downloaded, in any accepted format. */
 export function hasIndustryPhoto(industry) {
-  return Boolean(industry.stockImage) && assetExists(withExtension(industry.stockImage, '.webp'));
+  return baseFile(industry.stockImage) !== null;
 }

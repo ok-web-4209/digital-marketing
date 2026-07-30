@@ -195,11 +195,16 @@ export function servicesSection({ heading = true } = {}) {
  *
  * `media: 'featured'` gives imagery to the four flagship niches only and lists
  * the rest as compact text cards — used on the homepage, where ten equally
- * weighted image cards would flatten the hierarchy. `media: 'all'` keeps an
+ * weighted photo cards would flatten the hierarchy. `media: 'all'` keeps an
  * image on every card, which is what the industries hub wants.
+ *
+ * That hierarchy only earns its keep once the flagship photographs exist. Until
+ * then it would strip six illustrations and give nothing back, so it degrades
+ * to `all` and every card keeps its artwork.
  */
 export function industriesSection({ limit = null, showAll = true, media = 'all' } = {}) {
   const list = limit ? industries.slice(0, limit) : industries;
+  const spotlight = media === 'featured' && featuredIndustries.some((entry) => hasIndustryPhoto(entry));
   return section({
     tone: 'tint',
     id: 'industries',
@@ -212,7 +217,7 @@ export function industriesSection({ limit = null, showAll = true, media = 'all' 
       })}
       <div class="industry-grid">
         ${list.map((industry) => {
-          const withMedia = media === 'all' || industry.featured;
+          const withMedia = !spotlight || industry.featured;
           const classes = [
             'industry-card',
             industry.featured && 'industry-card--featured',
