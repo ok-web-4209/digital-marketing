@@ -95,7 +95,7 @@ and are not used as image sources.
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk> |
 | Required file | `assets/images/stock/tree-service-arborist.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -117,7 +117,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/> |
 | Required file | `assets/images/stock/concrete-driveway-contractors.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -138,7 +138,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw> |
 | Required file | `assets/images/stock/fence-installation-team.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -159,7 +159,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/> |
 | Required file | `assets/images/stock/professional-landscaping-service.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -180,7 +180,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/> |
 | Required file | `assets/images/stock/pool-maintenance-professional.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -200,7 +200,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/modern-garage-doors-on-a-white-house-3qRx6B4cT6g> |
 | Required file | `assets/images/stock/modern-residential-garage-doors.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -220,7 +220,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/> |
 | Required file | `assets/images/stock/residential-roofing-contractor.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -240,7 +240,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/> |
 | Required file | `assets/images/stock/house-pressure-washing-service.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -260,7 +260,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/> |
 | Required file | `assets/images/stock/real-estate-agent-client-viewing.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -280,7 +280,7 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **REMOTE CDN — the linked photograph is live; a local file remains optional** |
+| Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/> |
 | Required file | `assets/images/stock/lawyer-client-consultation.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
@@ -300,9 +300,10 @@ Used on:
 
 These stay as illustrations on purpose:
 
-- `hero-composition.svg`, `before-after.svg`, `review-findings.svg` and
-  `industries-overview.svg` — they explain website structure, rankings,
-  analytics and conversion, which a photograph cannot do.
+- `hero-composition.svg`, `before-after.svg`, `review-findings.svg`,
+  `industries-overview.svg` and the five `service-*.svg` files — they explain
+  website structure, rankings, analytics and conversion, which a photograph
+  cannot do.
 - `about-remote.svg` — the About page. A stock portrait must not stand in for
   the founder. See `docs/CONTENT-NEEDED.md` item 4.
 - Portfolio thumbnails, the logo, the favicon, the OG preview and every

@@ -148,14 +148,9 @@ for (const file of htmlFiles) {
     }
   }
 
-  /* --- reject placeholders and unapproved stock hosts; remote photographs use
-     fixed image CDNs with explicit crop dimensions by design --- */
+  /* --- stock photo hosts are for downloading from, never for linking to --- */
   for (const match of html.matchAll(/\s(?:src|srcset|poster)="([^"]*)"/g)) {
-    const source = match[1].replaceAll('&amp;', '&');
-    const approvedUnsplash = /^https:\/\/images\.unsplash\.com\/photo-[^?]+\?.*\bfit=crop\b.*\bw=\d+/i.test(source);
-    const approvedPexels = /^https:\/\/images\.pexels\.com\/photos\/\d+\/pexels-photo-\d+\.jpeg\?.*\bfit=crop\b.*\bw=\d+.*\bh=\d+/i.test(source);
-    if (/\b(placehold(er)?\.|via\.placeholder|picsum\.photos)/i.test(source)
-      || /\b(?:unsplash|pexels)\.com/i.test(source) && !approvedUnsplash && !approvedPexels) {
+    if (/\b(unsplash\.com|pexels\.com|placehold(er)?\.|via\.placeholder|picsum\.photos)/i.test(match[1])) {
       fail(rel, `remote stock or placeholder image source: ${match[1]}`);
     }
   }

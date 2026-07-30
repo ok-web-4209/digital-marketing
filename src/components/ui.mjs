@@ -110,11 +110,9 @@ export function figure({ className = '', imgClassName = '', caption = null, ...i
 }
 
 /** Card linking to another page, used for services, industries and articles. */
-export function linkCard({ href, iconName, image = null, imageAlt = '', title, body, meta = null, cta = 'Learn more' }) {
+export function linkCard({ href, iconName, title, body, meta = null, cta = 'Learn more' }) {
   return html`<a class="link-card" href="${href}">
-    ${image
-      ? html`<span class="link-card__icon link-card__icon--photo"><img src="${image}" alt="${imageAlt}" width="44" height="44" loading="lazy" decoding="async" /></span>`
-      : iconName && html`<span class="link-card__icon" aria-hidden="true">${icon(iconName)}</span>`}
+    ${iconName && html`<span class="link-card__icon" aria-hidden="true">${icon(iconName)}</span>`}
     ${meta && html`<span class="link-card__meta">${meta}</span>`}
     <h3 class="link-card__title">${title}</h3>
     <p class="link-card__body">${body}</p>
