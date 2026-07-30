@@ -120,9 +120,21 @@ illustration stays in place. Add files whenever you like and re-run
 
 **Status: ${present.length} of ${withPhotos.length} photographs present, ${missing.length} still missing.**
 
-## The quick way
+## The quick way — no software needed
 
-From a machine with internet access:
+**Actions tab → "Fetch industry photographs" → "Run workflow".**
+
+That downloads every photograph still missing, converts them to WebP, rebuilds
+the site and commits the result to whichever branch you started it from. It runs
+entirely on GitHub, so a phone or tablet browser is enough. The run page shows
+which photographs arrived and which need saving by hand.
+
+One-time setup if the run fails at the commit step: **Settings → Actions →
+General → Workflow permissions → Read and write permissions**.
+
+## The same thing from a terminal
+
+If you have Node 18+ and a checkout:
 
 \`\`\`bash
 npm run fetch-photos          # everything still missing
