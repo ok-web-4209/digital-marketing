@@ -10,14 +10,20 @@
  *
  * - `art` / `artAlt` — the generated SVG illustration, which is the fallback
  *   illustration and always exists (src/art.mjs writes it on every build).
- * - `stockImage` / `stockImageAlt` / `stockSourceUrl` — a photograph the owner
- *   downloads by hand into assets/images/stock/. `stockSourceUrl` records where
- *   it came from for the licence record in STOCK-IMAGE-DOWNLOADS.md; it is
- *   never rendered on the site.
+ * - `stockImage` / `stockImageAlt` / `stockSourceUrl` — the photograph. This is
+ *   either a path into assets/images/stock/ for a file the owner has downloaded,
+ *   or an https:// URL served straight from the Unsplash or Pexels image CDN.
+ *   `stockSourceUrl` always records the photo *page* it came from, for the
+ *   licence record in STOCK-IMAGE-DOWNLOADS.md; it is never rendered as an src.
+ * - `photoPosition` — optional `object-position` for photographs whose subject
+ *   sits away from the centre, so a 3:2 card crop keeps them in frame. It
+ *   applies to the photograph only, never to the illustration.
  *
- * `resolveImage()` in src/lib/media.mjs picks between the two by checking the
- * filesystem, so an industry whose photograph has not been downloaded yet keeps
- * its illustration instead of emitting a broken image.
+ * `resolveImage()` in src/lib/media.mjs picks between the layers: a remote URL
+ * is used as-is, a local path is used only once the file is on disk, and
+ * anything else falls back to the illustration. Note that the remote branch
+ * trades the build-time guarantee for a runtime one — the CDN has to answer for
+ * the photograph to appear, where a local file cannot fail once committed.
  */
 
 export const industries = [
@@ -28,11 +34,13 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-tree-service.svg',
     artAlt: 'Illustration of a certified arborist roped into a mature tree with a chipper truck parked below',
-    stockImage: '/assets/images/stock/tree-service-arborist.webp',
+    stockImage:
+      'https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=1400&h=900&q=82',
     stockImageAlt:
-      'Professional arborist trimming tree branches from an elevated work platform',
+      'Professional tree-service crew trimming a large mature tree beside a residential home',
     stockSourceUrl:
-      'https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk',
+      'https://unsplash.com/photos/a-tree-service-worker-is-trimming-a-large-tree-SAgO9i9Mzvo',
+    photoPosition: 'center 48%',
     short: 'Removals, trimming and storm work — including the emergency calls that will not wait for a callback.',
     heading: 'Websites and Local SEO for Tree Service Companies',
     intro:
@@ -61,9 +69,10 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-concrete.svg',
     artAlt: 'Illustration of a freshly poured and finished concrete driveway in front of a suburban house',
-    stockImage: '/assets/images/stock/concrete-driveway-contractors.webp',
+    stockImage:
+      'https://images.pexels.com/photos/33405139/pexels-photo-33405139/free-photo-of-concrete-workers-building-driveway-in-fort-worth.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Concrete contractors pouring a residential driveway in Fort Worth, Texas',
+      'Concrete contractors pouring and finishing a residential driveway',
     stockSourceUrl:
       'https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/',
     short: 'Driveways, patios, slabs and decorative work, where photographs of finished jobs do most of the selling.',
@@ -94,11 +103,13 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-fence.svg',
     artAlt: 'Illustration of an installer setting a new wooden privacy fence along a suburban property line',
-    stockImage: '/assets/images/stock/fence-installation-team.webp',
+    stockImage:
+      'https://images.unsplash.com/photo-1747407823747-bcb76a476350?auto=format&fit=crop&w=1400&h=900&q=82',
     stockImageAlt:
-      'Construction team installing a wooden residential fence',
+      'Construction workers installing a wooden residential fence',
     stockSourceUrl:
       'https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw',
+    photoPosition: 'center center',
     short: 'Wood, vinyl, aluminium and chain link — where most enquiries start with "what would this cost per foot?"',
     heading: 'Websites and Local SEO for Fence Companies',
     intro:
@@ -127,9 +138,10 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-landscaping.svg',
     artAlt: 'Illustration of a landscaped front garden with new planting beds, edging and a stone path',
-    stockImage: '/assets/images/stock/professional-landscaping-service.webp',
+    stockImage:
+      'https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Professional landscaping worker mowing a maintained green lawn',
+      'Professional landscaping worker mowing and maintaining a green lawn',
     stockSourceUrl:
       'https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/',
     short: 'Design-build projects and recurring maintenance, which need to be sold in completely different ways.',
@@ -160,11 +172,12 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-pool.svg',
     artAlt: 'Illustration of a clean residential swimming pool with patio furniture and service equipment nearby',
-    stockImage: '/assets/images/stock/pool-maintenance-professional.webp',
+    stockImage:
+      'https://images.pexels.com/photos/17410701/pexels-photo-17410701/free-photo-of-rubber-hosepipe-in-swimming-pool.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Pool-maintenance professional cleaning an outdoor swimming pool',
+      'Clean residential swimming pool with professional pool-cleaning equipment in the water',
     stockSourceUrl:
-      'https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/',
+      'https://www.pexels.com/photo/rubber-hosepipe-in-swimming-pool-17410701/',
     short: 'Recurring cleaning routes, equipment repair and renovation work, each on a different sales cycle.',
     heading: 'Websites and Local SEO for Pool Service Companies',
     intro:
@@ -193,7 +206,8 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-garage-door.svg',
     artAlt: 'Illustration of a technician servicing a residential garage door with a branded service van on the driveway',
-    stockImage: '/assets/images/stock/modern-residential-garage-doors.webp',
+    stockImage:
+      'https://images.unsplash.com/photo-1770756051811-1612ac8bedfa?auto=format&fit=crop&w=1400&h=900&q=82',
     stockImageAlt:
       'Modern residential house with professionally installed garage doors',
     stockSourceUrl:
@@ -226,9 +240,10 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-roofing.svg',
     artAlt: 'Illustration of roofers installing new architectural shingles on a suburban house roof',
-    stockImage: '/assets/images/stock/residential-roofing-contractor.webp',
+    stockImage:
+      'https://images.pexels.com/photos/33404248/pexels-photo-33404248/free-photo-of-professional-roofer-installing-shingles-on-new-roof.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Professional roofing contractor installing shingles on a residential roof',
+      'Professional roofer installing shingles on a residential roof with a nail gun',
     stockSourceUrl:
       'https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/',
     short: 'Replacements, repairs, storm response and insurance claims — the highest-competition local market of all.',
@@ -259,11 +274,13 @@ export const industries = [
     homeService: true,
     art: '/assets/images/art/industry-outdoor.svg',
     artAlt: 'Illustration of a contractor pressure washing a suburban driveway and deck',
-    stockImage: '/assets/images/stock/house-pressure-washing-service.webp',
+    stockImage:
+      'https://images.pexels.com/photos/5652626/pexels-photo-5652626.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Service professional pressure washing the exterior siding of a house',
+      'Outdoor-service professional pressure washing the exterior siding of a house',
     stockSourceUrl:
       'https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/',
+    photoPosition: '45% center',
     short: 'Pressure washing, decks, outdoor lighting, gutters and the seasonal work that fills the calendar between them.',
     heading: 'Websites and Local SEO for Outdoor Service Companies',
     intro:
@@ -292,11 +309,13 @@ export const industries = [
     homeService: false,
     art: '/assets/images/art/industry-real-estate.svg',
     artAlt: 'Illustration of a suburban home with a for-sale sign and an agent greeting a couple at the door',
-    stockImage: '/assets/images/stock/real-estate-agent-client-viewing.webp',
+    stockImage:
+      'https://images.pexels.com/photos/8292801/pexels-photo-8292801.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
       'Real-estate agent showing a bright modern home to a prospective buyer',
     stockSourceUrl:
       'https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/',
+    photoPosition: 'center 38%',
     short: 'Agents, teams and brokerages that need to be found for neighbourhood and seller searches.',
     heading: 'Websites and Local SEO for Real Estate Firms',
     intro:
@@ -325,9 +344,10 @@ export const industries = [
     homeService: false,
     art: '/assets/images/art/industry-legal.svg',
     artAlt: 'Illustration of a law office desk with a scales-of-justice motif and a consultation booking card',
-    stockImage: '/assets/images/stock/lawyer-client-consultation.webp',
+    stockImage:
+      'https://images.pexels.com/photos/8112166/pexels-photo-8112166.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop',
     stockImageAlt:
-      'Attorney consulting with clients and reviewing documents in a professional office',
+      'Attorney reviewing legal documents with clients during an office consultation',
     stockSourceUrl:
       'https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/',
     short: 'Solo attorneys and small firms competing against far larger advertising budgets.',

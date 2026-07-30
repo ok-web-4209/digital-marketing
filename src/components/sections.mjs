@@ -177,7 +177,13 @@ export function servicesSection({ heading = true } = {}) {
               ${button({ label: `Explore ${service.shortName}`, href: service.href, variant: 'tertiary', withArrow: true })}
             </div>
             <div class="service-row__art">
-              ${figure({ src: service.art, alt: service.artAlt, width: 1000, height: 750 })}
+              ${figure({
+                src: service.homeImageUrl || service.art,
+                alt: service.homeImageAlt || service.artAlt,
+                width: 1000,
+                height: 750,
+                imgClassName: service.homeImageUrl ? 'service-row__photo' : '',
+              })}
             </div>
           </article>`,
         )}

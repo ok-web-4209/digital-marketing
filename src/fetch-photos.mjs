@@ -27,7 +27,14 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { industries } from './data/industries.mjs';
-import { assetExists, baseFile, BASE_FORMATS, PHOTO_WIDTH, STOCK_DIR } from './lib/media.mjs';
+import {
+  assetExists,
+  baseFile,
+  BASE_FORMATS,
+  isRemoteImage,
+  PHOTO_WIDTH,
+  STOCK_DIR,
+} from './lib/media.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -169,6 +176,10 @@ async function main() {
 
   const wanted = industries
     .filter((industry) => industry.stockImage)
+    // An industry served straight from the image CDN has no local filename to
+    // download into — `stockImage` is the URL itself, not a path under
+    // assets/images/stock/. Skip rather than write a file named after a URL.
+    .filter((industry) => !isRemoteImage(industry.stockImage))
     .filter(
       (industry) =>
         filters.length === 0 ||
@@ -178,7 +189,14 @@ async function main() {
     );
 
   if (wanted.length === 0) {
-    console.error(`No industries matched ${filters.join(', ')}.`);
+    const allRemote = industries
+      .filter((industry) => industry.stockImage)
+      .every((industry) => isRemoteImage(industry.stockImage));
+    console.error(
+      allRemote
+        ? 'Nothing to download — every industry photograph is served from the image CDN.'
+        : `No industries matched ${filters.join(', ')}.`,
+    );
     process.exit(1);
   }
 

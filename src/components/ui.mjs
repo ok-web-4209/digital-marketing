@@ -69,11 +69,15 @@ export function picture({
   sizes = null,
   eager = false,
   priority = false,
+  objectPosition = null,
 }) {
   const loading = eager ? '' : ' loading="lazy"';
   const fetchPriority = priority ? ' fetchpriority="high"' : '';
+  // Per-image framing, so a tall photograph can be pulled onto its subject
+  // without a rule per industry in the stylesheet.
+  const focus = objectPosition ? ` style="object-position: ${objectPosition};"` : '';
   const img = html`<img
-      ${raw(className ? `class="${className}" ` : '')}src="${src}"
+      ${raw(className ? `class="${className}" ` : '')}src="${src}"${raw(focus)}
       ${srcset ? raw(`srcset="${srcset}" `) : ''}${sizes && srcset ? raw(`sizes="${sizes}" `) : ''}alt="${alt}"
       width="${width}"
       height="${height}"
