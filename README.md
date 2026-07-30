@@ -93,12 +93,15 @@ SVG. A photograph cannot show a page structure.
 
 Industry imagery is photographic. The files themselves are **not** in this
 repository and are never downloaded by the build — the build stays offline and
-must not depend on a third party being reachable. To fetch them, run
-`npm run fetch-photos` from a machine with internet access. It reads each
-source page's own `og:image`, saves it into `assets/images/stock/` under the
-filename the data expects, and lists anything it could not get so you can save
-those by hand. Photographs already present are left alone unless you pass
-`--force`.
+must not depend on a third party being reachable.
+
+To fetch them, either run `npm run fetch-photos` locally, or start the **Fetch
+industry photographs** workflow from the Actions tab, which needs no local
+tooling at all and works from a phone. Both read each source page's own
+`og:image`, save it into `assets/images/stock/` under the filename the data
+expects, and list anything they could not get so it can be saved by hand.
+Photographs already present are left alone unless `--force` is passed. The
+workflow additionally converts to WebP, rebuilds and commits.
 
 Nothing breaks while they are missing. `resolveImage()` in `src/lib/media.mjs`
 checks the filesystem at build time and picks:

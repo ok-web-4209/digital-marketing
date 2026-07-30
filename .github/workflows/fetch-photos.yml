@@ -1,0 +1,119 @@
+# Downloads the industry photographs and rebuilds the site, entirely on GitHub.
+#
+# There is no local tooling in this path on purpose: start it from the Actions
+# tab in any browser, including a phone or tablet. It runs the same
+# `npm run fetch-photos` and `npm run build` you would run on a laptop, checks
+# the result, and commits to whichever branch you started it from.
+#
+# Actions tab -> "Fetch industry photographs" -> "Run workflow".
+
+name: Fetch industry photographs
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Only industries matching this text (blank downloads everything still missing)'
+        required: false
+        default: ''
+      force:
+        description: 'Re-download photographs that are already present'
+        type: boolean
+        default: false
+      convert:
+        description: 'Convert downloaded JPEGs to WebP (roughly halves the file size)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Inputs go through the environment rather than into the script text, so
+      # nothing typed into the form can be executed as a shell command.
+      - name: Download photographs
+        id: fetch
+        env:
+          ONLY: ${{ inputs.only }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          # An `x && y=z` one-liner here would return non-zero when the test
+          # fails, which errexit turns into a failed step. Spelled out instead.
+          args=""
+          if [ "$FORCE" = "true" ]; then
+            args="--force"
+          fi
+          node src/fetch-photos.mjs $args $ONLY 2>&1 | tee "$RUNNER_TEMP/fetch.log"
+          exit "${PIPESTATUS[0]}"
+
+      - name: Convert JPEGs and PNGs to WebP
+        if: ${{ inputs.convert }}
+        run: |
+          shopt -s nullglob
+          files=(assets/images/stock/*.jpg assets/images/stock/*.jpeg assets/images/stock/*.png)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "Nothing to convert — everything is already WebP."
+            exit 0
+          fi
+          sudo apt-get update -qq && sudo apt-get install -y -qq webp
+          for file in "${files[@]}"; do
+            # No resizing here: fetch-photos already asks the CDN for the right
+            # width, and -resize would upscale anything that came back smaller.
+            if cwebp -quiet -q 80 "$file" -o "${file%.*}.webp"; then
+              rm "$file"
+              echo "converted $(basename "$file") -> $(basename "${file%.*}.webp")"
+            else
+              # Leave the original in place — the build accepts it as-is.
+              echo "could not convert $(basename "$file"), keeping the original"
+              rm -f "${file%.*}.webp"
+            fi
+          done
+
+      - name: Rebuild and check
+        run: npm run build && npm run check
+
+      - name: Commit
+        id: commit
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add industry photographs and rebuild'
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # Written last and always, so the result is readable on the run page
+      # without opening the logs.
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '## Photograph download'
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/fetch.log" 2>/dev/null || echo 'The download step did not run.'
+            echo '```'
+            echo
+            if [ '${{ steps.commit.outputs.committed }}' = 'true' ]; then
+              echo 'Committed to `${{ github.ref_name }}`. The site will redeploy shortly.'
+            else
+              echo 'Nothing changed, so nothing was committed.'
+            fi
+            echo
+            echo 'Check the licence on each source page before publishing —'
+            echo 'see STOCK-IMAGE-DOWNLOADS.md.'
+          } >> "$GITHUB_STEP_SUMMARY"
