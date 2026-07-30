@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node src/build.mjs",
     "check": "node src/check.mjs",
+    "fetch-photos": "node src/fetch-photos.mjs",
     "lint": "node --check assets/js/main.js && node src/check.mjs",
     "test": "npm run build && npm run check",
     "serve": "node src/serve.mjs"

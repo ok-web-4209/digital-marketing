@@ -120,7 +120,26 @@ illustration stays in place. Add files whenever you like and re-run
 
 **Status: ${present.length} of ${withPhotos.length} photographs present, ${missing.length} still missing.**
 
-## How to add a photograph
+## The quick way
+
+From a machine with internet access:
+
+\`\`\`bash
+npm run fetch-photos          # everything still missing
+npm run fetch-photos -- tree  # just one, by name
+npm run build && npm run check
+\`\`\`
+
+It reads each source page below, takes the image URL that page publishes for
+itself, and saves it under the right filename at about ${PHOTO_WIDTH}px wide. Anything
+it cannot fetch is listed at the end for you to save by hand — it never leaves
+a half-written file, and it skips photographs you already have unless you pass
+\`--force\`.
+
+**It does not agree to any licence on your behalf.** Check the terms on each
+source page before you publish, as described in step 2 below.
+
+## How to add a photograph by hand
 
 1. Open the source page listed for the image below.
 2. **Check the licence and the download conditions on the page at the time you
