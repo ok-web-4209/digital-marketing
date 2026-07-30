@@ -3,17 +3,32 @@
 # Stock image downloads
 
 Design Rank Studio uses photographs of real service work for its industry
-imagery. **This repository does not download them** — the build has no network
-access and stock photo hosts are blocked by the environment's egress policy, so
-the files below have to be downloaded by hand.
+imagery. A photograph is wired up one of two ways, and `resolveImage()` in
+`src/lib/media.mjs` tells them apart:
 
-Nothing breaks while they are missing. Every reference is resolved against the
-filesystem at build time by `resolveImage()` in `src/lib/media.mjs`: where a
-photograph exists it is used, and where it does not the generated SVG
-illustration stays in place. Add files whenever you like and re-run
-`npm run build`.
+- **Remote** — `stockImage` is an `https://` URL on the Unsplash or Pexels
+  image CDN, and the browser loads it from there on every visit. Nothing is
+  downloaded and nothing is stored in this repository. The licence still applies
+  in full: serving a photograph from the host's CDN is still publishing it
+  commercially, so the terms on each source page below are worth confirming
+  exactly as they would be for a downloaded file.
+- **Local** — `stockImage` is a path into `assets/images/stock/`. The build
+  resolves it against the filesystem, using the photograph where the file exists
+  and the generated SVG illustration where it does not.
 
-**Status: 0 of 10 photographs present, 10 still missing.**
+**Status: 10 of 10 photographs served remotely from the image CDN.**
+
+> The remote images depend on the CDN answering at page load. That is a runtime
+> dependency the local path does not have: a committed file cannot fail once it
+> is in the repository, whereas a hotlinked URL can be blocked by a visitor's
+> browser, rate-limited, or withdrawn by the host. The SVG illustrations are
+> kept in `art` for every industry and are rendered again the moment a
+> `stockImage` URL is removed from the data.
+
+_Everything below describes the local route — downloading a photograph into
+`assets/images/stock/`. No industry uses it at the moment. It applies again as
+soon as a `stockImage` is set back to a path instead of a URL, which is also
+how you would stop depending on the CDN for one._
 
 ## The quick way — no software needed
 
@@ -86,8 +101,9 @@ neither is required:
   added to the `srcset` so card and mosaic slots do not download the full-size
   hero file. Worth doing for the four featured industries at least.
 
-The source URLs below are a record for you. They are never rendered on the site
-and are not used as image sources.
+The **source page** URLs below are the licence record. They are never rendered
+on the site and are never used as an image source — that is the separate image
+URL listed for each remote photograph.
 
 ## Images
 
@@ -95,14 +111,12 @@ and are not used as image sources.
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
-| Source page | <https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk> |
-| Required file | `assets/images/stock/tree-service-arborist.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Professional arborist trimming tree branches from an elevated work platform |
-| Fallback illustration | `assets/images/art/industry-tree-service.svg` |
-| Optional AVIF | `assets/images/stock/tree-service-arborist.avif` — missing |
-| Optional 900 px variant | `tree-service-arborist-900.webp` — missing |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
+| Source page | <https://unsplash.com/photos/a-tree-service-worker-is-trimming-a-large-tree-SAgO9i9Mzvo> |
+| Image URL | `https://images.unsplash.com/photo-1754321889123-0485c7fea5f1?auto=format&fit=crop&w=1400&h=900&q=82` |
+| Alt text | Professional tree-service crew trimming a large mature tree beside a residential home |
+| Crop | `object-position: center 48%` |
+| Fallback illustration | `assets/images/art/industry-tree-service.svg` — rendered only if the URL is removed from the data |
 
 Framing: Keep the arborist, the lift and the tree in frame; do not crop the subject out behind text.
 
@@ -117,14 +131,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/> |
-| Required file | `assets/images/stock/concrete-driveway-contractors.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Concrete contractors pouring a residential driveway in Fort Worth, Texas |
-| Fallback illustration | `assets/images/art/industry-concrete.svg` |
-| Optional AVIF | `assets/images/stock/concrete-driveway-contractors.avif` — missing |
-| Optional 900 px variant | `concrete-driveway-contractors-900.webp` — missing |
+| Image URL | `https://images.pexels.com/photos/33405139/pexels-photo-33405139/free-photo-of-concrete-workers-building-driveway-in-fort-worth.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Concrete contractors pouring and finishing a residential driveway |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-concrete.svg` — rendered only if the URL is removed from the data |
 
 Framing: Keep the crew and the fresh pour visible. This is the flagship image — concrete contractors are the primary target market.
 
@@ -138,14 +150,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw> |
-| Required file | `assets/images/stock/fence-installation-team.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Construction team installing a wooden residential fence |
-| Fallback illustration | `assets/images/art/industry-fence.svg` |
-| Optional AVIF | `assets/images/stock/fence-installation-team.avif` — missing |
-| Optional 900 px variant | `fence-installation-team-900.webp` — missing |
+| Image URL | `https://images.unsplash.com/photo-1747407823747-bcb76a476350?auto=format&fit=crop&w=1400&h=900&q=82` |
+| Alt text | Construction workers installing a wooden residential fence |
+| Crop | `object-position: center center` |
+| Fallback illustration | `assets/images/art/industry-fence.svg` — rendered only if the URL is removed from the data |
 
 Framing: Show both the installers and the fence structure clearly.
 
@@ -159,14 +169,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/> |
-| Required file | `assets/images/stock/professional-landscaping-service.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Professional landscaping worker mowing a maintained green lawn |
-| Fallback illustration | `assets/images/art/industry-landscaping.svg` |
-| Optional AVIF | `assets/images/stock/professional-landscaping-service.avif` — missing |
-| Optional 900 px variant | `professional-landscaping-service-900.webp` — missing |
+| Image URL | `https://images.pexels.com/photos/9029162/pexels-photo-9029162.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Professional landscaping worker mowing and maintaining a green lawn |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-landscaping.svg` — rendered only if the URL is removed from the data |
 
 Framing: Keep the worker and the mower in frame alongside the finished lawn.
 
@@ -180,14 +188,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
-| Source page | <https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/> |
-| Required file | `assets/images/stock/pool-maintenance-professional.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Pool-maintenance professional cleaning an outdoor swimming pool |
-| Fallback illustration | `assets/images/art/industry-pool.svg` |
-| Optional AVIF | `assets/images/stock/pool-maintenance-professional.avif` — missing |
-| Optional 900 px variant | `pool-maintenance-professional-900.webp` — missing |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
+| Source page | <https://www.pexels.com/photo/rubber-hosepipe-in-swimming-pool-17410701/> |
+| Image URL | `https://images.pexels.com/photos/17410701/pexels-photo-17410701/free-photo-of-rubber-hosepipe-in-swimming-pool.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Clean residential swimming pool with professional pool-cleaning equipment in the water |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-pool.svg` — rendered only if the URL is removed from the data |
 
 Framing: Favour the service professional over a crop that shows only the water.
 
@@ -200,14 +206,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://unsplash.com/photos/modern-garage-doors-on-a-white-house-3qRx6B4cT6g> |
-| Required file | `assets/images/stock/modern-residential-garage-doors.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
+| Image URL | `https://images.unsplash.com/photo-1770756051811-1612ac8bedfa?auto=format&fit=crop&w=1400&h=900&q=82` |
 | Alt text | Modern residential house with professionally installed garage doors |
-| Fallback illustration | `assets/images/art/industry-garage-door.svg` |
-| Optional AVIF | `assets/images/stock/modern-residential-garage-doors.avif` — missing |
-| Optional 900 px variant | `modern-residential-garage-doors-900.webp` — missing |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-garage-door.svg` — rendered only if the URL is removed from the data |
 
 Framing: Landscape crop emphasising the garage doors and the residential exterior.
 
@@ -220,14 +224,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/> |
-| Required file | `assets/images/stock/residential-roofing-contractor.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Professional roofing contractor installing shingles on a residential roof |
-| Fallback illustration | `assets/images/art/industry-roofing.svg` |
-| Optional AVIF | `assets/images/stock/residential-roofing-contractor.avif` — missing |
-| Optional 900 px variant | `residential-roofing-contractor-900.webp` — missing |
+| Image URL | `https://images.pexels.com/photos/33404248/pexels-photo-33404248/free-photo-of-professional-roofer-installing-shingles-on-new-roof.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Professional roofer installing shingles on a residential roof with a nail gun |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-roofing.svg` — rendered only if the URL is removed from the data |
 
 Framing: Keep the worker, safety equipment, shingles and roof structure visible.
 
@@ -240,14 +242,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/> |
-| Required file | `assets/images/stock/house-pressure-washing-service.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Service professional pressure washing the exterior siding of a house |
-| Fallback illustration | `assets/images/art/industry-outdoor.svg` |
-| Optional AVIF | `assets/images/stock/house-pressure-washing-service.avif` — missing |
-| Optional 900 px variant | `house-pressure-washing-service-900.webp` — missing |
+| Image URL | `https://images.pexels.com/photos/5652626/pexels-photo-5652626.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Outdoor-service professional pressure washing the exterior siding of a house |
+| Crop | `object-position: 45% center` |
+| Fallback illustration | `assets/images/art/industry-outdoor.svg` — rendered only if the URL is removed from the data |
 
 Framing: Show both the worker and a recognisable house exterior.
 
@@ -260,14 +260,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/> |
-| Required file | `assets/images/stock/real-estate-agent-client-viewing.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
+| Image URL | `https://images.pexels.com/photos/8292801/pexels-photo-8292801.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
 | Alt text | Real-estate agent showing a bright modern home to a prospective buyer |
-| Fallback illustration | `assets/images/art/industry-real-estate.svg` |
-| Optional AVIF | `assets/images/stock/real-estate-agent-client-viewing.avif` — missing |
-| Optional 900 px variant | `real-estate-agent-client-viewing-900.webp` — missing |
+| Crop | `object-position: center 38%` |
+| Fallback illustration | `assets/images/art/industry-real-estate.svg` — rendered only if the URL is removed from the data |
 
 Framing: An active property consultation — not a generic handshake crop.
 
@@ -280,14 +278,12 @@ Used on:
 
 | Field | Value |
 | --- | --- |
-| Status | **MISSING — the SVG illustration is being used instead** |
+| Status | **REMOTE — served from the image CDN, no local file involved** |
 | Source page | <https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/> |
-| Required file | `assets/images/stock/lawyer-client-consultation.webp` (or the same name as .jpg/.jpeg/.png) |
-| Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
-| Alt text | Attorney consulting with clients and reviewing documents in a professional office |
-| Fallback illustration | `assets/images/art/industry-legal.svg` |
-| Optional AVIF | `assets/images/stock/lawyer-client-consultation.avif` — missing |
-| Optional 900 px variant | `lawyer-client-consultation-900.webp` — missing |
+| Image URL | `https://images.pexels.com/photos/8112166/pexels-photo-8112166.jpeg?auto=compress&cs=tinysrgb&w=1400&h=900&fit=crop` |
+| Alt text | Attorney reviewing legal documents with clients during an office consultation |
+| Crop | centred (default) |
+| Fallback illustration | `assets/images/art/industry-legal.svg` — rendered only if the URL is removed from the data |
 
 Framing: Keep the whole consultation scene rather than cropping tightly to one person.
 

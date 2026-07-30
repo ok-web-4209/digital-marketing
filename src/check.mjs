@@ -148,9 +148,22 @@ for (const file of htmlFiles) {
     }
   }
 
-  /* --- stock photo hosts are for downloading from, never for linking to --- */
+  /* --- remote photography is allowed only from the two image CDNs, and only
+     in the cropped form the site asks for; placeholder services never are.
+
+     The photo *pages* (unsplash.com/photos/..., www.pexels.com/photo/...) stay
+     banned as an image source: they are HTML, they are what `stockSourceUrl`
+     records for the licence, and pointing an <img> at one renders nothing. --- */
   for (const match of html.matchAll(/\s(?:src|srcset|poster)="([^"]*)"/g)) {
-    if (/\b(unsplash\.com|pexels\.com|placehold(er)?\.|via\.placeholder|picsum\.photos)/i.test(match[1])) {
+    const source = match[1].replaceAll('&amp;', '&');
+    const onPhotoCdn =
+      /^https:\/\/images\.unsplash\.com\/photo-[\w-]+\?/i.test(source)
+      || /^https:\/\/images\.pexels\.com\/photos\/\d+\/[\w./-]+\.jpe?g\?/i.test(source);
+    // Order-independent: the CDNs accept these parameters in any sequence.
+    const cropped = /\bfit=crop\b/i.test(source) && /\bw=\d+/i.test(source);
+
+    if (/\b(placehold(er)?\.|via\.placeholder|picsum\.photos)/i.test(source)
+      || (/\b(?:unsplash|pexels)\.com/i.test(source) && !(onPhotoCdn && cropped))) {
       fail(rel, `remote stock or placeholder image source: ${match[1]}`);
     }
   }

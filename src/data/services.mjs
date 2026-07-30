@@ -17,6 +17,10 @@ export const services = [
     art: '/assets/images/art/service-website-design.svg',
     artAlt:
       'Mockup of a tree-service website homepage with a call button, quote form and service cards, shown on desktop and mobile',
+    homeImageUrl:
+      'https://images.unsplash.com/photo-1586717799252-bd134ad00e26?auto=format&fit=crop&w=1400&h=1050&q=82',
+    homeImageAlt: 'Website designer reviewing responsive website wireframes on a laptop and tablet',
+    homeImageSourceUrl: 'https://unsplash.com/photos/macbook-pro-beside-apple-magic-mouse-zvmZiw3vdsQ',
     tagline: 'A website built to turn visitors into quote requests',
     problem:
       'Most service-business websites are built like a brochure. They describe the company, list a phone number somewhere, and leave the visitor to work out the rest. Homeowners comparing three contractors on a phone will pick whichever one makes it easiest to get a price.',
@@ -59,6 +63,12 @@ export const services = [
     art: '/assets/images/art/service-redesign.svg',
     artAlt:
       'Side-by-side comparison of a cluttered outdated contractor website and a clean modern redesign with a visible quote button',
+    homeImageUrl:
+      'https://images.unsplash.com/photo-1542744095-0d53267d353e?auto=format&fit=crop&w=1400&h=1050&q=82',
+    homeImageAlt:
+      'Designer working on a modern conversion-focused website displayed on a desktop monitor',
+    homeImageSourceUrl:
+      'https://unsplash.com/photos/woman-sitting-in-front-of-turned-on-computer-monitor-ARW7Ic7MSAM',
     tagline: 'Keep the business you have built. Replace the website holding it back.',
     problem:
       'Your business has grown but the website has not. It was built years ago, it is awkward on a phone, and it no longer reflects the quality of your work. Rebuilding feels risky because the site still brings in some calls.',
@@ -99,6 +109,10 @@ export const services = [
     art: '/assets/images/art/service-local-seo.svg',
     artAlt:
       'Local search results panel showing a map, a Google Business Profile card and a keyword ranking table for a service business',
+    homeImageUrl:
+      'https://images.unsplash.com/photo-1595374827334-4be516468272?auto=format&fit=crop&w=1400&h=1050&q=82',
+    homeImageAlt: 'Laptop displaying website traffic and performance analytics in a modern workspace',
+    homeImageSourceUrl: 'https://unsplash.com/photos/macbook-pro-beside-white-ceramic-mug-SK5jOjXxGRA',
     tagline: 'Be the business people find when they search in your area',
     problem:
       'When someone in your area searches for the work you do, the businesses at the top get the call. If your site has no service-area pages, thin service content or a neglected Google Business Profile, you are invisible for the searches that matter most.',
@@ -140,6 +154,11 @@ export const services = [
     art: '/assets/images/art/service-landing-pages.svg',
     artAlt:
       'Campaign landing page mockup with a headline, quote form and trust badges, next to a chart showing form submissions',
+    homeImageUrl:
+      'https://images.unsplash.com/photo-1530435460869-d13625c69bbf?auto=format&fit=crop&w=1400&h=1050&q=82',
+    homeImageAlt:
+      'Close-up of a focused modern website landing page displayed on a computer screen',
+    homeImageSourceUrl: 'https://unsplash.com/photos/computer-screen-displaying-website-home-page-Ylk5n_nd9dA',
     tagline: 'Focused pages for the campaigns and areas you are pushing hardest',
     problem:
       'Sending paid traffic to your homepage wastes it. Someone who clicked an ad for driveway replacement in a specific town should land on a page about exactly that, not on a general overview of everything you offer.',

@@ -29,7 +29,11 @@ export function homePage() {
       ${homeHero()}
       ${problemsSection()}
       ${servicesSection()}
-      ${industriesSection({ media: 'featured' })}
+      ${/* Every card keeps its artwork. 'featured' would spotlight the four
+            featured industries and strip the media from the other six, which
+            is a different section from the one the homepage has always shown. */
+      ''}
+      ${industriesSection({ media: 'all' })}
       ${whyChooseSection()}
       ${processSection()}
       ${projectsSection({ projects: projects.slice(0, 3), tone: 'white' })}

@@ -1145,6 +1145,9 @@ button[disabled] {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Centre is the default crop; photographs whose subject sits off-centre carry
+     their own `object-position` from `photoPosition` in the industry data. */
+  object-position: center;
   /* Left at `none`. Set to `saturate(0.92) contrast(1.02)` once the real
      photographs are in place and only if it genuinely evens them out — a
      filter applied to images nobody has seen is a guess, not a treatment. */
@@ -1532,6 +1535,16 @@ button[disabled] {
 .service-row__art img {
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
+}
+
+/* A photograph stands in for the 1000×750 illustration, so it is held to the
+   same 4:3 box and cropped to fill it rather than letterboxed or stretched. */
+.service-row__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .service-stack__note {

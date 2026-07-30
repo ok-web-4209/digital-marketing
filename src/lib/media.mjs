@@ -45,6 +45,17 @@ export const VARIANT_WIDTHS = [900];
  */
 export const BASE_FORMATS = ['.webp', '.jpg', '.jpeg', '.png'];
 
+/**
+ * Is this an externally hosted image rather than a path into the repository?
+ *
+ * Remote URLs skip the filesystem layer entirely: there is no file to stat, no
+ * sibling rendition to discover and no extension to swap, so `baseFile()`,
+ * `withExtension()`, `assetExists()` and `srcsetFor()` are never given one.
+ */
+export function isRemoteImage(value) {
+  return typeof value === 'string' && /^https?:\/\//i.test(value);
+}
+
 /** Does a site-root path such as "/assets/images/stock/x.webp" exist on disk? */
 export function assetExists(path) {
   if (typeof path !== 'string' || !path.startsWith('/')) return false;
@@ -95,7 +106,24 @@ export function resolveImage({
   illustrationWidth = 800,
   illustrationHeight = 560,
   sizes = null,
+  objectPosition = null,
 }) {
+  // A remote photograph is taken at its word — the CDN serves it at the crop
+  // the URL asks for, so there is nothing on disk to resolve against.
+  if (isRemoteImage(photo)) {
+    return {
+      isPhoto: true,
+      src: photo,
+      alt: photoAlt,
+      width: photoWidth,
+      height: photoHeight,
+      srcset: null,
+      sources: [],
+      sizes: null,
+      objectPosition,
+    };
+  }
+
   const base = baseFile(photo);
 
   if (!base) {
@@ -124,21 +152,28 @@ export function resolveImage({
     sources: hasAvif ? [{ type: 'image/avif', srcset: srcsetFor(avif, photoWidth) ?? avif }] : [],
     // `picture()` drops this wherever there are no width descriptors to size.
     sizes,
+    objectPosition,
   };
 }
 
-/** Resolve the artwork for one industry, photograph first, illustration second. */
+/**
+ * Resolve the artwork for one industry, photograph first, illustration second.
+ *
+ * `photoPosition` only travels with the photograph: the illustrations are drawn
+ * to fit their frame, so shifting their focal point would be meaningless.
+ */
 export function industryImage(industry, { sizes = null } = {}) {
   return resolveImage({
     photo: industry.stockImage,
     photoAlt: industry.stockImageAlt,
     illustration: industry.art,
     illustrationAlt: industry.artAlt,
+    objectPosition: industry.photoPosition ?? null,
     sizes,
   });
 }
 
-/** True when the industry's photograph has been downloaded, in any accepted format. */
+/** True when the industry has a photograph — downloaded locally or hosted remotely. */
 export function hasIndustryPhoto(industry) {
-  return baseFile(industry.stockImage) !== null;
+  return isRemoteImage(industry.stockImage) || baseFile(industry.stockImage) !== null;
 }
