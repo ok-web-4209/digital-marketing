@@ -81,7 +81,11 @@ function entry(industry) {
 
 | Field | Value |
 | --- | --- |
-| Status | **${found ? `present — \`${found.replace(`${STOCK_DIR}/`, '')}\`` : 'MISSING — the SVG illustration is being used instead'}** |
+| Status | **${found
+    ? `present — \`${found.replace(`${STOCK_DIR}/`, '')}\``
+    : industry.remoteImage
+      ? 'REMOTE CDN — the linked photograph is live; a local file remains optional'
+      : 'MISSING — the SVG illustration is being used instead'}** |
 | Source page | <${industry.stockSourceUrl}> |
 | Required file | \`assets/images/stock/${file}\` (or the same name as ${BASE_FORMATS.slice(1).join('/')}) |
 | Prepare at | ${PHOTO_WIDTH} × ${PHOTO_HEIGHT} px (14:9), WebP quality 78–82, under ~300 KB |

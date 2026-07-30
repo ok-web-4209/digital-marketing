@@ -41,9 +41,8 @@ export function pageHero({ eyebrow, title, serif = null, lead, actions = [], art
         <h1 class="page-hero__title">${title}${serif ? html` <em class="display-serif">${serif}</em>` : ''}</h1>
         <p class="page-hero__lead">${lead}</p>
         ${actions.length > 0 && html`<div class="button-row">${actions.map((action) => button(action))}</div>`}
-      </div>
-      ${media &&
-      html`<div class="page-hero__art">
+      </div>${media ? html`
+      <div class="page-hero__art">
         ${figure({
           ...media,
           sizes: media.sizes ?? SIZES.hero,
@@ -52,7 +51,7 @@ export function pageHero({ eyebrow, title, serif = null, lead, actions = [], art
           eager: true,
           priority: true,
         })}
-      </div>`}
+      </div>` : ''}
       ${aside && html`<div class="page-hero__art">${aside}</div>`}
     </div>
   </section>`;
@@ -228,11 +227,10 @@ export function industriesSection({ limit = null, showAll = true, media = 'all' 
             .filter(Boolean)
             .join(' ');
           return html`<article class="${classes}">
-            <a class="industry-card__link" href="${industryHref(industry)}">
-              ${withMedia &&
-              html`<span class="industry-card__media">
+            <a class="industry-card__link" href="${industryHref(industry)}">${withMedia ? html`
+              <span class="industry-card__media">
                 ${picture(industryImage(industry, { sizes: industry.featured ? SIZES.featuredCard : SIZES.card }))}
-              </span>`}
+              </span>` : ''}
               <span class="industry-card__body">
                 <span class="industry-card__name">${industry.name}</span>
                 <span class="industry-card__short">${industry.short}</span>

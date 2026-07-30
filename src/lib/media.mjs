@@ -129,6 +129,21 @@ export function resolveImage({
 
 /** Resolve the artwork for one industry, photograph first, illustration second. */
 export function industryImage(industry, { sizes = null } = {}) {
+  if (industry.remoteImage) {
+    return {
+      isPhoto: true,
+      src: industry.remoteImage,
+      alt: industry.stockImageAlt,
+      width: PHOTO_WIDTH,
+      height: PHOTO_HEIGHT,
+      srcset: industry.remoteImageSmall
+        ? `${industry.remoteImageSmall} 900w, ${industry.remoteImage} ${PHOTO_WIDTH}w`
+        : null,
+      sources: [],
+      sizes,
+    };
+  }
+
   return resolveImage({
     photo: industry.stockImage,
     photoAlt: industry.stockImageAlt,
@@ -140,5 +155,5 @@ export function industryImage(industry, { sizes = null } = {}) {
 
 /** True when the industry's photograph has been downloaded, in any accepted format. */
 export function hasIndustryPhoto(industry) {
-  return baseFile(industry.stockImage) !== null;
+  return Boolean(industry.remoteImage) || baseFile(industry.stockImage) !== null;
 }
