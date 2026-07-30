@@ -145,6 +145,18 @@ export function aboutPage() {
           { label: cta.review.label, href: cta.review.href, variant: 'primary' },
           { label: 'See our work', href: '/portfolio.html', variant: 'secondary' },
         ],
+        // FOUNDER IMAGE REQUIRED — deliberately still an illustration.
+        //
+        // No genuine founder photograph exists anywhere in this project, so
+        // this hero keeps the abstract "how we work" artwork. It must not be
+        // replaced with a stock portrait: a purchased headshot presented as the
+        // founder of this studio would be a straightforward misrepresentation,
+        // and the same goes for stock photographs of a team, an office or a US
+        // location that do not exist.
+        //
+        // To fix properly: add a real photograph of the founder to
+        // assets/images/ and point `art` at it, with alt text naming the person.
+        // See docs/CONTENT-NEEDED.md item 4.
         art: '/assets/images/art/about-remote.svg',
         artAlt:
           'A project conversation panel connected to a map of the United States with service-area markers',

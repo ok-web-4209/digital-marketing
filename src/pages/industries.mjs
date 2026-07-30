@@ -10,6 +10,7 @@ import {
   linkCard,
   infoCard,
   industriesSection,
+  industryMosaic,
   processSection,
   packagesSection,
   faqSection,
@@ -17,6 +18,7 @@ import {
   relatedIndustries,
 } from '../components/sections.mjs';
 import { industries, homeServiceIndustries, featuredIndustries, industryHref } from '../data/industries.mjs';
+import { industryImage, resolveImage } from '../lib/media.mjs';
 import { promotedServices } from '../data/services.mjs';
 import { site, cta } from '../data/site.mjs';
 import { faqs } from '../data/faqs.mjs';
@@ -24,6 +26,10 @@ import { faqs } from '../data/faqs.mjs';
 /* ---------------------------------------------------------- industries hub */
 
 export function industriesHubPage() {
+  // A four-photo mosaic once the photographs exist, the overview illustration
+  // until then.
+  const mosaic = industryMosaic();
+
   return page({
     path: 'industries.html',
     title: 'Industries We Build Websites For',
@@ -53,9 +59,13 @@ export function industriesHubPage() {
           { label: cta.review.label, href: cta.review.href, variant: 'primary' },
           { label: 'See our work', href: '/portfolio.html', variant: 'secondary' },
         ],
-        art: '/assets/images/art/industries-overview.svg',
-        artAlt:
-          'A grid of industry tiles for tree services, concrete, fencing, landscaping, roofing and pool services around a local search panel',
+        ...(mosaic
+          ? { aside: mosaic }
+          : {
+              art: '/assets/images/art/industries-overview.svg',
+              artAlt:
+                'A grid of industry tiles for tree services, concrete, fencing, landscaping, roofing and pool services around a local search panel',
+            }),
       })}
 
       ${industriesSection({ showAll: false })}
@@ -111,6 +121,7 @@ export function industriesHubPage() {
 /* ------------------------------------------------------- home services hub */
 
 export function homeServicesPage() {
+  const treeService = industries.find((entry) => entry.slug === 'tree-service-websites');
   const homeServiceFaqs = [
     {
       q: 'Why do you focus on home-service businesses?',
@@ -157,8 +168,14 @@ export function homeServicesPage() {
           { label: cta.review.label, href: cta.review.href, variant: 'primary' },
           { label: 'See packages', href: '/pricing.html', variant: 'secondary' },
         ],
-        art: '/assets/images/art/industry-tree-service.svg',
-        artAlt: 'A certified arborist roped into a mature tree with a service truck parked below',
+        // The tree-service photograph, described for this page's context so no
+        // two images on the site share alt text.
+        art: resolveImage({
+          photo: treeService.stockImage,
+          photoAlt: 'Arborist working from an elevated platform to trim a mature tree at a residential property',
+          illustration: treeService.art,
+          illustrationAlt: 'A certified arborist roped into a mature tree with a service truck parked below',
+        }),
       })}
 
       ${section({
@@ -223,6 +240,7 @@ export function homeServicesPage() {
 /* ---------------------------------------------------------- industry page */
 
 export function industryPage(industry) {
+  const heroImage = industryImage(industry);
   const industryFaqs = [
     {
       q: `How much does a ${industry.name.toLowerCase().replace(/s$/, '')} website cost?`,
@@ -240,7 +258,7 @@ export function industryPage(industry) {
     title: industry.meta.title,
     description: industry.meta.description,
     trail: [{ label: 'Industries', href: '/industries.html' }, { label: industry.name }],
-    ogImage: industry.art,
+    ogImage: heroImage.src,
     schema: [
       faqSchema(industryFaqs),
       {
@@ -263,8 +281,7 @@ export function industryPage(industry) {
           { label: cta.review.label, href: cta.review.href, variant: 'primary' },
           { label: cta.proposal.label, href: cta.proposal.href, variant: 'secondary' },
         ],
-        art: industry.art,
-        artAlt: industry.artAlt,
+        art: heroImage,
       })}
 
       ${section({

@@ -3,13 +3,34 @@ import { site, cta, trustPoints, principles, process, problems } from '../data/s
 import { promotedServices, services } from '../data/services.mjs';
 import { industries, featuredIndustries, industryHref } from '../data/industries.mjs';
 import { packages, pricingNote } from '../data/packages.mjs';
+import { industryImage, hasIndustryPhoto } from '../lib/media.mjs';
 import { icon } from './icons.mjs';
-import { button, sectionHeading, checkList, linkCard, infoCard, figure, section } from './ui.mjs';
+import { button, sectionHeading, checkList, linkCard, infoCard, figure, picture, section } from './ui.mjs';
+
+/**
+ * Display widths for the industry imagery, so the browser can pick the smallest
+ * rendition that will do. Only takes effect once a width variant of the
+ * photograph exists — see src/lib/media.mjs.
+ */
+const SIZES = {
+  hero: '(min-width: 900px) 45vw, 92vw',
+  card: '(min-width: 1000px) 25vw, (min-width: 600px) 46vw, 92vw',
+  featuredCard: '(min-width: 1000px) 48vw, (min-width: 600px) 46vw, 92vw',
+  mosaicTile: '(min-width: 900px) 22vw, 45vw',
+};
 
 /* ------------------------------------------------------------- page heroes */
 
-/** Inner-page hero. Light, spacious, with optional supporting artwork. */
+/**
+ * Inner-page hero. Light, spacious, with optional supporting artwork.
+ *
+ * `art` is either a path to an illustration or a media object from
+ * `resolveImage()`, which may have resolved to a photograph. The hero image is
+ * the largest-contentful-paint candidate on these pages, so it is the one image
+ * per page that loads eagerly at high priority.
+ */
 export function pageHero({ eyebrow, title, serif = null, lead, actions = [], art = null, artAlt = '', aside = null }) {
+  const media = art && (typeof art === 'string' ? { src: art, alt: artAlt, width: 1000, height: 720 } : art);
   return html`<section class="page-hero">
     <div class="page-hero__pattern" aria-hidden="true"></div>
     <div class="container page-hero__inner${art || aside ? ' page-hero__inner--split' : ''}">
@@ -19,9 +40,16 @@ export function pageHero({ eyebrow, title, serif = null, lead, actions = [], art
         <p class="page-hero__lead">${lead}</p>
         ${actions.length > 0 && html`<div class="button-row">${actions.map((action) => button(action))}</div>`}
       </div>
-      ${art &&
+      ${media &&
       html`<div class="page-hero__art">
-        ${figure({ src: art, alt: artAlt, width: 1000, height: 720, eager: true })}
+        ${figure({
+          ...media,
+          sizes: media.sizes ?? SIZES.hero,
+          className: media.isPhoto ? 'industry-photo-frame' : '',
+          imgClassName: media.isPhoto ? 'industry-photo' : '',
+          eager: true,
+          priority: true,
+        })}
       </div>`}
       ${aside && html`<div class="page-hero__art">${aside}</div>`}
     </div>
@@ -162,7 +190,15 @@ export function servicesSection({ heading = true } = {}) {
   });
 }
 
-export function industriesSection({ limit = null, showAll = true } = {}) {
+/**
+ * Industry cards.
+ *
+ * `media: 'featured'` gives imagery to the four flagship niches only and lists
+ * the rest as compact text cards — used on the homepage, where ten equally
+ * weighted image cards would flatten the hierarchy. `media: 'all'` keeps an
+ * image on every card, which is what the industries hub wants.
+ */
+export function industriesSection({ limit = null, showAll = true, media = 'all' } = {}) {
   const list = limit ? industries.slice(0, limit) : industries;
   return section({
     tone: 'tint',
@@ -175,27 +211,29 @@ export function industriesSection({ limit = null, showAll = true } = {}) {
         lead: 'We work primarily with specialty home-service companies, alongside real estate firms, attorneys and other established local and professional-service businesses.',
       })}
       <div class="industry-grid">
-        ${list.map(
-          (industry) => html`<article class="industry-card${industry.featured ? ' industry-card--featured' : ''}">
+        ${list.map((industry) => {
+          const withMedia = media === 'all' || industry.featured;
+          const classes = [
+            'industry-card',
+            industry.featured && 'industry-card--featured',
+            !withMedia && 'industry-card--compact',
+          ]
+            .filter(Boolean)
+            .join(' ');
+          return html`<article class="${classes}">
             <a class="industry-card__link" href="${industryHref(industry)}">
-              <span class="industry-card__media">
-                <img
-                  src="${industry.art}"
-                  alt="${industry.artAlt}"
-                  width="800"
-                  height="560"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </span>
+              ${withMedia &&
+              html`<span class="industry-card__media">
+                ${picture(industryImage(industry, { sizes: industry.featured ? SIZES.featuredCard : SIZES.card }))}
+              </span>`}
               <span class="industry-card__body">
                 <span class="industry-card__name">${industry.name}</span>
                 <span class="industry-card__short">${industry.short}</span>
                 <span class="industry-card__cta">Learn more${icon('arrow', { className: 'icon icon--xs' })}</span>
               </span>
             </a>
-          </article>`,
-        )}
+          </article>`;
+        })}
       </div>
       ${showAll &&
       html`<div class="section-actions">
@@ -204,6 +242,44 @@ export function industriesSection({ limit = null, showAll = true } = {}) {
       </div>`}
     `,
   });
+}
+
+/**
+ * Four-tile photographic mosaic of the flagship industries, used as the
+ * industries hub hero in place of the single overview illustration.
+ *
+ * Returns null when none of the four photographs have been downloaded, so the
+ * caller can keep the existing SVG rather than render a grid of nothing. Tiles
+ * whose photograph is missing individually fall back to that industry's
+ * illustration, which keeps the composition intact while the library is filled.
+ */
+export function industryMosaic() {
+  const tiles = featuredIndustries.slice(0, 4);
+  if (!tiles.some((industry) => hasIndustryPhoto(industry))) return null;
+
+  return html`<div class="mosaic">
+    <span class="mosaic__accent" aria-hidden="true"></span>
+    <div class="mosaic__grid">
+      ${tiles.map(
+        (industry, index) => html`<figure class="mosaic__tile">
+          ${picture({
+            ...industryImage(industry, { sizes: SIZES.mosaicTile }),
+            className: 'mosaic__image',
+            eager: true,
+            priority: index === 0,
+          })}
+          <figcaption class="mosaic__label">${industry.name}</figcaption>
+        </figure>`,
+      )}
+    </div>
+    <div class="mosaic__card">
+      <span class="mosaic__card-icon" aria-hidden="true">${icon('check', { className: 'icon icon--xs' })}</span>
+      <span class="mosaic__card-text">
+        <span class="mosaic__card-title">New quote request</span>
+        <span class="mosaic__card-meta">Straight from local search</span>
+      </span>
+    </div>
+  </div>`;
 }
 
 export function whyChooseSection() {
@@ -564,4 +640,4 @@ export function relatedIndustries(currentSlug) {
   });
 }
 
-export { section, sectionHeading, button, checkList, figure, linkCard, infoCard, raw };
+export { section, sectionHeading, button, checkList, figure, picture, linkCard, infoCard, raw };

@@ -133,6 +133,28 @@ for (const file of htmlFiles) {
     if (!existsSync(target)) fail(rel, `broken image: ${src}`);
   }
 
+  /* --- srcset candidates must resolve too --- */
+  for (const match of html.matchAll(/\ssrcset="([^"]*)"/g)) {
+    for (const candidate of match[1].split(',')) {
+      const [url] = candidate.trim().split(/\s+/);
+      if (!url || /^(https?:|data:)/.test(url)) continue;
+      if (url.startsWith('/')) {
+        fail(rel, `root-relative srcset candidate (must be document-relative): ${url}`);
+        continue;
+      }
+      if (!existsSync(resolve(ROOT, resolveFromPage(rel, url.split('?')[0])))) {
+        fail(rel, `broken srcset candidate: ${url}`);
+      }
+    }
+  }
+
+  /* --- stock photo hosts are for downloading from, never for linking to --- */
+  for (const match of html.matchAll(/\s(?:src|srcset|poster)="([^"]*)"/g)) {
+    if (/\b(unsplash\.com|pexels\.com|placehold(er)?\.|via\.placeholder|picsum\.photos)/i.test(match[1])) {
+      fail(rel, `remote stock or placeholder image source: ${match[1]}`);
+    }
+  }
+
   /* --- internal links and asset references --- */
   for (const match of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
     const value = match[1];

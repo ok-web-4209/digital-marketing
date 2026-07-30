@@ -24,7 +24,7 @@ export function prefixFor(path) {
 }
 
 /**
- * Rewrite root-relative href/src attributes in a rendered document.
+ * Rewrite root-relative href/src/srcset attributes in a rendered document.
  *
  * Left alone: absolute URLs, protocol-relative URLs, mailto:, tel:, data:,
  * and bare fragments. Those are either external or already correct.
@@ -34,12 +34,25 @@ export function prefixFor(path) {
  */
 export function relativizeUrls(html, path) {
   const prefix = prefixFor(path);
+  // "/" is the home page.
+  const documentRelative = (rest) => prefix + (rest === '' ? 'index.html' : rest);
 
-  return html.replace(/(\s(?:href|src)=")\/(?!\/)([^"]*)"/g, (_match, attr, rest) => {
-    // "/" is the home page.
-    const target = rest === '' ? 'index.html' : rest;
-    return `${attr}${prefix}${target}"`;
-  });
+  return html
+    .replace(/(\s(?:href|src)=")\/(?!\/)([^"]*)"/g, (_match, attr, rest) => `${attr}${documentRelative(rest)}"`)
+    // srcset holds a comma-separated candidate list, each optionally followed by
+    // a width or density descriptor, so it needs rewriting candidate by candidate.
+    .replace(/(\ssrcset=")([^"]*)"/g, (_match, attr, value) => {
+      const candidates = value
+        .split(',')
+        .map((candidate) => candidate.trim())
+        .filter(Boolean)
+        .map((candidate) => {
+          if (!candidate.startsWith('/') || candidate.startsWith('//')) return candidate;
+          const [url, ...descriptors] = candidate.split(/\s+/);
+          return [documentRelative(url.slice(1)), ...descriptors].join(' ');
+        });
+      return `${attr}${candidates.join(', ')}"`;
+    });
 }
 
 /**

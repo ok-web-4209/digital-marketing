@@ -14,6 +14,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildArt } from './art.mjs';
+import { buildStockRecord } from './stock-record.mjs';
 import { relativizeUrls, prefixFor } from './lib/urls.mjs';
 import { site } from './data/site.mjs';
 import { services } from './data/services.mjs';
@@ -187,10 +188,11 @@ function build() {
 
   writeFile('sitemap.xml', buildSitemap());
   writeFile('robots.txt', buildRobots());
+  writeFile('STOCK-IMAGE-DOWNLOADS.md', buildStockRecord());
 
   console.log(
     `Built ${pages.length} pages, ${Object.keys(redirects).length} redirect stubs, ` +
-      `${artFiles.length} artwork files, sitemap.xml and robots.txt.`,
+      `${artFiles.length} artwork files, sitemap.xml, robots.txt and STOCK-IMAGE-DOWNLOADS.md.`,
   );
 }
 

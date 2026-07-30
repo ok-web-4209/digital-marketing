@@ -29,7 +29,7 @@ export function homePage() {
       ${homeHero()}
       ${problemsSection()}
       ${servicesSection()}
-      ${industriesSection()}
+      ${industriesSection({ media: 'featured' })}
       ${whyChooseSection()}
       ${processSection()}
       ${projectsSection({ projects: projects.slice(0, 3), tone: 'white' })}
