@@ -24,15 +24,25 @@ illustration stays in place. Add files whenever you like and re-run
    model or property release limits that matter for commercial marketing use.
    Confirm the terms before you publish, and keep a note of what they were.
 3. Download the largest version offered.
-4. Crop to the framing note, resize to 1400 × 900 and export as WebP at
-   quality 78–82. Squoosh (squoosh.app), `cwebp` or any image editor will do:
+4. Save it into `assets/images/stock/` under the exact base name listed below.
+   **Any of .webp, .jpg, .jpeg, .png is accepted**, so a JPEG straight out of the
+   download works — e.g. `tree-service-arborist.jpg`. The build finds it by name,
+   whatever the extension.
+5. Run `npm run build && npm run check`. The photograph is now live.
+
+That is enough to see the site with real photography. Steps 6 and 7 are
+optimisation, worth doing before launch but not before looking at it:
+
+6. Crop to the framing note and resize to 1400 × 900.
+7. Convert to WebP at quality 78–82 and delete the original. Squoosh
+   (squoosh.app), `cwebp` or any image editor will do:
 
    ```bash
    cwebp -q 80 -resize 1400 0 source.jpg -o assets/images/stock/<name>.webp
    ```
 
-5. Save it at the exact filename listed — the build looks for that name.
-6. Run `npm run build && npm run check`.
+   A 1400px JPEG is typically 400–700 KB against 150–250 KB for the same
+   image as WebP, so this is worth roughly half the page weight.
 
 ### Optional extras
 
@@ -56,7 +66,7 @@ and are not used as image sources.
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/arborist-trimming-tree-branches-with-chainsaw-from-a-lift-G_yb_r2zNqk> |
-| Required file | `assets/images/stock/tree-service-arborist.webp` |
+| Required file | `assets/images/stock/tree-service-arborist.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Professional arborist trimming tree branches from an elevated work platform |
 | Fallback illustration | `assets/images/art/industry-tree-service.svg` |
@@ -78,7 +88,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/concrete-workers-building-driveway-in-fort-worth-33405139/> |
-| Required file | `assets/images/stock/concrete-driveway-contractors.webp` |
+| Required file | `assets/images/stock/concrete-driveway-contractors.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Concrete contractors pouring a residential driveway in Fort Worth, Texas |
 | Fallback illustration | `assets/images/art/industry-concrete.svg` |
@@ -99,7 +109,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/construction-workers-build-a-wooden-fence-outdoors-htI5kXnidLw> |
-| Required file | `assets/images/stock/fence-installation-team.webp` |
+| Required file | `assets/images/stock/fence-installation-team.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Construction team installing a wooden residential fence |
 | Fallback illustration | `assets/images/art/industry-fence.svg` |
@@ -120,7 +130,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/a-man-cutting-the-grass-using-a-lawn-mower-9029162/> |
-| Required file | `assets/images/stock/professional-landscaping-service.webp` |
+| Required file | `assets/images/stock/professional-landscaping-service.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Professional landscaping worker mowing a maintained green lawn |
 | Fallback illustration | `assets/images/art/industry-landscaping.svg` |
@@ -141,7 +151,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/man-cleaning-swimming-pool-21327976/> |
-| Required file | `assets/images/stock/pool-maintenance-professional.webp` |
+| Required file | `assets/images/stock/pool-maintenance-professional.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Pool-maintenance professional cleaning an outdoor swimming pool |
 | Fallback illustration | `assets/images/art/industry-pool.svg` |
@@ -161,7 +171,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://unsplash.com/photos/modern-garage-doors-on-a-white-house-3qRx6B4cT6g> |
-| Required file | `assets/images/stock/modern-residential-garage-doors.webp` |
+| Required file | `assets/images/stock/modern-residential-garage-doors.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Modern residential house with professionally installed garage doors |
 | Fallback illustration | `assets/images/art/industry-garage-door.svg` |
@@ -181,7 +191,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/professional-roofer-installing-shingles-on-new-roof-33404248/> |
-| Required file | `assets/images/stock/residential-roofing-contractor.webp` |
+| Required file | `assets/images/stock/residential-roofing-contractor.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Professional roofing contractor installing shingles on a residential roof |
 | Fallback illustration | `assets/images/art/industry-roofing.svg` |
@@ -201,7 +211,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/back-view-of-a-person-pressure-washing-a-house-5652626/> |
-| Required file | `assets/images/stock/house-pressure-washing-service.webp` |
+| Required file | `assets/images/stock/house-pressure-washing-service.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Service professional pressure washing the exterior siding of a house |
 | Fallback illustration | `assets/images/art/industry-outdoor.svg` |
@@ -221,7 +231,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/a-real-estate-agent-showing-a-house-to-a-client-8292801/> |
-| Required file | `assets/images/stock/real-estate-agent-client-viewing.webp` |
+| Required file | `assets/images/stock/real-estate-agent-client-viewing.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Real-estate agent showing a bright modern home to a prospective buyer |
 | Fallback illustration | `assets/images/art/industry-real-estate.svg` |
@@ -241,7 +251,7 @@ Used on:
 | --- | --- |
 | Status | **MISSING — the SVG illustration is being used instead** |
 | Source page | <https://www.pexels.com/photo/clients-and-lawyer-in-an-office-8112166/> |
-| Required file | `assets/images/stock/lawyer-client-consultation.webp` |
+| Required file | `assets/images/stock/lawyer-client-consultation.webp` (or the same name as .jpg/.jpeg/.png) |
 | Prepare at | 1400 × 900 px (14:9), WebP quality 78–82, under ~300 KB |
 | Alt text | Attorney consulting with clients and reviewing documents in a professional office |
 | Fallback illustration | `assets/images/art/industry-legal.svg` |
